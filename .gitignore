@@ -3,4 +3,4 @@ build/
 
 # InteliJ
 *.iml
-/.idea
+.idea
