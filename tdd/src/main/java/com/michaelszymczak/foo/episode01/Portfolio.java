@@ -13,10 +13,6 @@ public class Portfolio {
     this.hasFunds = hasFunds;
   }
 
-  public boolean noFunds() {
-    return !hasFunds;
-  }
-
   public boolean hasFunds() {
     return hasFunds;
   }

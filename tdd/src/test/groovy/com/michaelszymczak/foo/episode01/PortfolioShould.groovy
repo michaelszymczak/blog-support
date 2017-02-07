@@ -9,7 +9,6 @@ class PortfolioShould extends Specification {
     def portfolio = Portfolio.emptyWithoutFunds()
 
     expect:
-    portfolio.noFunds()
     ! portfolio.hasFunds()
   }
 
@@ -21,8 +20,6 @@ class PortfolioShould extends Specification {
     def portfolioWithFunds = portfolio.afterAdding(someFunds())
 
     then:
-    portfolio.noFunds()
-    ! portfolioWithFunds.noFunds()
     ! portfolio.hasFunds()
     portfolioWithFunds.hasFunds()
   }
