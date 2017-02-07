@@ -18,10 +18,10 @@ public class Portfolio {
   }
 
   public Portfolio afterAdding(Funds fundsToAdd) {
-    return new Portfolio(fundsToAdd);
+    return new Portfolio(funds.withAdded(fundsToAdd));
   }
 
   public Funds availableFunds() {
-    return Funds.ofValue(150);
+    return funds;
   }
 }
