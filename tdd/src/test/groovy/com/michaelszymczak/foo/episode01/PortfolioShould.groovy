@@ -10,6 +10,7 @@ class PortfolioShould extends Specification {
 
     expect:
     portfolio.noFunds()
+    ! portfolio.hasFunds()
   }
 
   def "accept funds"() {
@@ -22,6 +23,8 @@ class PortfolioShould extends Specification {
     then:
     portfolio.noFunds()
     ! portfolioWithFunds.noFunds()
+    ! portfolio.hasFunds()
+    portfolioWithFunds.hasFunds()
   }
 
   private static final Funds someFunds() {

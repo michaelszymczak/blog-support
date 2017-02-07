@@ -17,6 +17,10 @@ public class Portfolio {
     return !hasFunds;
   }
 
+  public boolean hasFunds() {
+    return hasFunds;
+  }
+
   public Portfolio afterAdding(Funds fundsToAdd) {
     return new Portfolio(true);
   }
