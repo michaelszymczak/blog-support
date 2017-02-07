@@ -33,4 +33,8 @@ public class Funds {
   public int hashCode() {
     return value;
   }
+
+  public Funds withAdded(Funds fundsToAdd) {
+    return Funds.ofValue(value + fundsToAdd.value);
+  }
 }

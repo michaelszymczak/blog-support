@@ -14,4 +14,23 @@ class FundsShould extends Specification {
     1                 | true
     Integer.MAX_VALUE | true
   }
+
+  def "return new instance with more funds added"() {
+    given:
+    def originalFunds = Funds.ofValue(50)
+
+    when:
+    def newFunds = originalFunds.withAdded(Funds.ofValue(addedValue))
+
+    then:
+    originalFunds == Funds.ofValue(50)
+    newFunds == Funds.ofValue(expectedNewFundsValue)
+
+    where:
+    addedValue | expectedNewFundsValue
+    0          | 50
+    1          | 51
+    100        | 150
+
+  }
 }
