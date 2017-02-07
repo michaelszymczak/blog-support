@@ -2,25 +2,22 @@ package com.michaelszymczak.foo.episode01;
 
 public class Portfolio {
 
-  private final boolean noFunds;
+  private final boolean hasFunds;
 
-  public Portfolio() {
-    this(true);
+  public static Portfolio emptyWithoutFunds()
+  {
+    return new Portfolio(false);
   }
 
-  public Portfolio(boolean noFunds) {
-    this.noFunds = noFunds;
-  }
-
-  public boolean noShares() {
-    return true;
+  private Portfolio(boolean hasFunds) {
+    this.hasFunds = hasFunds;
   }
 
   public boolean noFunds() {
-    return noFunds;
+    return !hasFunds;
   }
 
   public Portfolio afterAdding(Funds fundsToAdd) {
-    return new Portfolio(false);
+    return new Portfolio(true);
   }
 }

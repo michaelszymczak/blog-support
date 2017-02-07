@@ -6,16 +6,15 @@ class PortfolioShould extends Specification {
 
   def "have initially no shares or funds"() {
     given:
-    def portfolio = new Portfolio()
+    def portfolio = Portfolio.emptyWithoutFunds()
 
     expect:
-    portfolio.noShares()
     portfolio.noFunds()
   }
 
   def "accept funds"() {
     given:
-    def portfolio = new Portfolio()
+    def portfolio = Portfolio.emptyWithoutFunds()
 
     when:
     def portfolioWithFunds = portfolio.afterAdding(someFunds())
