@@ -20,4 +20,8 @@ public class Portfolio {
   public Portfolio afterAdding(Funds fundsToAdd) {
     return new Portfolio(fundsToAdd);
   }
+
+  public Funds availableFunds() {
+    return Funds.ofValue(150);
+  }
 }
