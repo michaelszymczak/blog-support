@@ -39,6 +39,8 @@ class PortfolioShould extends Specification {
     1                    | 1                     | 2
   }
 
+  // Enough funds to start buying shares
+
   private static final Funds someFunds() {
     Funds.ofValue(100)
   }
