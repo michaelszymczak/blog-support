@@ -39,12 +39,10 @@ class PortfolioShould extends Specification {
     1                    | 1                     | 2
   }
 
-  // Enough funds to start buying shares
-
   def "buy some shares"() {
     given:
     def portfolio = Portfolio
-            .investingOn(StockMarket.trading([new Company(new Company.Ticker("VOD"), new Company.PricePerShare(15))] as Set))
+            .investingOn(StockMarket.trading([Company.withTicker("VOD").andPricePerShare(15)] as Set))
             .afterAdding(Funds.ofValue(115))
 
     when:
