@@ -26,10 +26,16 @@ class PortfolioShould extends Specification {
 
   def "accept even more funds"() {
     given:
-    def portfolio = Portfolio.emptyWithoutFunds().afterAdding(Funds.ofValue(100)).afterAdding(Funds.ofValue(50))
+    def portfolio = Portfolio.emptyWithoutFunds()
+            .afterAdding(Funds.ofValue(firstAddedFundsValue))
+            .afterAdding(Funds.ofValue(secondAddedFundsValue))
 
     expect:
-    portfolio.availableFunds() == Funds.ofValue(150)
+    portfolio.availableFunds() == Funds.ofValue(expectedFundsValue)
+
+    where:
+    firstAddedFundsValue | secondAddedFundsValue | expectedFundsValue
+    100                  | 50                    | 150
   }
 
   private static final Funds someFunds() {
