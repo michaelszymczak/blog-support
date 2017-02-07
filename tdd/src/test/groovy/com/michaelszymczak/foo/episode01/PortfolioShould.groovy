@@ -12,4 +12,20 @@ class PortfolioShould extends Specification {
     portfolio.noShares()
     portfolio.noFunds()
   }
+
+  def "accept funds"() {
+    given:
+    def portfolio = new Portfolio()
+
+    when:
+    def portfolioWithFunds = portfolio.afterAdding(someFunds())
+
+    then:
+    portfolio.noFunds()
+    ! portfolioWithFunds.noFunds()
+  }
+
+  private static final Funds someFunds() {
+    new Funds()
+  }
 }
