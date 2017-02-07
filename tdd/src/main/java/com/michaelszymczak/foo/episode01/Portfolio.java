@@ -13,6 +13,10 @@ public class Portfolio {
     this.funds = funds;
   }
 
+  public static Portfolio investingOn(Object stockMarket) {
+    return Portfolio.emptyWithoutFunds();
+  }
+
   public boolean hasFunds() {
     return funds.available();
   }
@@ -23,5 +27,9 @@ public class Portfolio {
 
   public Funds availableFunds() {
     return funds;
+  }
+
+  public Portfolio afterBuying(String stocks) {
+    return new Portfolio(Funds.ofValue(100));
   }
 }

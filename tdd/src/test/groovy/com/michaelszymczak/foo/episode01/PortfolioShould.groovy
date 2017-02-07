@@ -41,6 +41,23 @@ class PortfolioShould extends Specification {
 
   // Enough funds to start buying shares
 
+  def "buy some shares"() {
+    given:
+    def portfolio = Portfolio
+            .investingOn(stockMarketTrading("VOD|15"))
+            .afterAdding(Funds.ofValue(115))
+
+    when:
+    def portfolioWithSOmeStocks = portfolio.afterBuying("VOD")
+
+    then:
+    portfolioWithSOmeStocks.availableFunds() == Funds.ofValue(100)
+  }
+
+  private stockMarketTrading(String sharePrices) {
+    null
+  }
+
   private static final Funds someFunds() {
     Funds.ofValue(100)
   }
