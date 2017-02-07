@@ -25,6 +25,6 @@ class PortfolioShould extends Specification {
   }
 
   private static final Funds someFunds() {
-    new Funds()
+    Funds.ofValue(100)
   }
 }

@@ -4,12 +4,6 @@ public class Funds {
 
   private final int value;
 
-  @Deprecated
-  public Funds()
-  {
-    this(0);
-  }
-
   private Funds(int value)
   {
     this.value = value;
