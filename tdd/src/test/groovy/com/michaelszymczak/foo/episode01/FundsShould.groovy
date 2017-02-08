@@ -31,6 +31,23 @@ class FundsShould extends Specification {
     0          | 50
     1          | 51
     100        | 150
+  }
 
+  def "return new instance with some funds subtracted"() {
+    given:
+    def originalFunds = Funds.ofValue(50)
+
+    when:
+    def newFunds = originalFunds.withSubtracted(Funds.ofValue(subtractedValue))
+
+    then:
+    originalFunds == Funds.ofValue(50)
+    newFunds == Funds.ofValue(expectedNewFundsValue)
+
+    where:
+    subtractedValue | expectedNewFundsValue
+    0               | 50
+    1               | 49
+    50              | 0
   }
 }

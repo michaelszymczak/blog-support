@@ -37,4 +37,8 @@ public class Funds {
   public Funds withAdded(Funds fundsToAdd) {
     return Funds.ofValue(value + fundsToAdd.value);
   }
+
+  public Funds withSubtracted(Funds fundToSubtract) {
+    return Funds.ofValue(value - fundToSubtract.value);
+  }
 }

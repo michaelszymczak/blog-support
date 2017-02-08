@@ -39,17 +39,22 @@ class PortfolioShould extends Specification {
     1                    | 1                     | 2
   }
 
-  def "buy some shares"() {
+  def "buy a share"() {
     given:
     def portfolio = Portfolio
-            .investingOn(StockMarket.trading([Company.withTicker("VOD").andPricePerShare(15)] as Set))
-            .afterAdding(Funds.ofValue(115))
+            .investingOn(StockMarket.trading([Company.withTicker("VOD").andPricePerShare(pricePerShare)] as Set))
+            .afterAdding(Funds.ofValue(initialFunds))
 
     when:
     def portfolioWithSOmeStocks = portfolio.afterBuying("VOD")
 
     then:
-    portfolioWithSOmeStocks.availableFunds() == Funds.ofValue(100)
+    portfolioWithSOmeStocks.availableFunds() == Funds.ofValue(expectedAvailableFundsAfterTransaction)
+
+    where:
+    initialFunds | pricePerShare | expectedAvailableFundsAfterTransaction
+    115          | 15            | 100
+//    20           | 1             | 19
   }
 
 
