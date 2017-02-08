@@ -64,6 +64,6 @@ class PortfolioShould extends Specification {
 
   private static final StockMarket someStockMarket()
   {
-    return new StockMarket()
+    return new StockMarket([] as Set)
   }
 }
