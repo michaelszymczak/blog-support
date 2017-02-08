@@ -5,17 +5,11 @@ public class Portfolio {
   private final Funds funds;
 //  private final StockMarket stockMarket;
 
-  @Deprecated
-  public static Portfolio emptyWithoutFunds()
-  {
-    return new Portfolio(Funds.ofValue(0));
-  }
-
   private Portfolio(Funds funds) {
     this.funds = funds;
   }
 
-  public static Portfolio investingOn(Object stockMarket) {
+  public static Portfolio investingOn(StockMarket stockMarket) {
     return new Portfolio(Funds.ofValue(0));
   }
 

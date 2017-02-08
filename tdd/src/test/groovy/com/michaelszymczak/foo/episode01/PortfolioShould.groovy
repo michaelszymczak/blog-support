@@ -6,7 +6,7 @@ class PortfolioShould extends Specification {
 
   def "have initially no shares or funds"() {
     given:
-    def portfolio = Portfolio.emptyWithoutFunds()
+    def portfolio = Portfolio.investingOn(someStockMarket())
 
     expect:
     !portfolio.hasFunds()
@@ -14,7 +14,7 @@ class PortfolioShould extends Specification {
 
   def "accept funds"() {
     given:
-    def portfolio = Portfolio.emptyWithoutFunds()
+    def portfolio = Portfolio.investingOn(someStockMarket())
 
     when:
     def portfolioWithFunds = portfolio.afterAdding(someFunds())
@@ -26,7 +26,7 @@ class PortfolioShould extends Specification {
 
   def "accept even more funds"() {
     given:
-    def portfolio = Portfolio.emptyWithoutFunds()
+    def portfolio = Portfolio.investingOn(someStockMarket())
             .afterAdding(Funds.ofValue(firstAddedFundsValue))
             .afterAdding(Funds.ofValue(secondAddedFundsValue))
 
