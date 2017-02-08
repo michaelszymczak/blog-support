@@ -54,7 +54,7 @@ class PortfolioShould extends Specification {
     where:
     initialFunds | pricePerShare | expectedAvailableFundsAfterTransaction
     115          | 15            | 100
-//    20           | 1             | 19
+    20           | 1             | 19
   }
 
 

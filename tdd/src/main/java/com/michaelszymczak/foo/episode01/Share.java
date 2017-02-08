@@ -60,6 +60,10 @@ public class Share {
       this.price = price;
     }
 
+    public int value() {
+      return price;
+    }
+
     @Override
     public String toString() {
       return String.valueOf(price);

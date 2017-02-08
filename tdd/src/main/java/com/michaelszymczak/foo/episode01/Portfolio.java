@@ -27,6 +27,10 @@ public class Portfolio {
   }
 
   public Portfolio afterBuying(Share.Ticker share) {
-    return new Portfolio(stockMarket, Funds.ofValue(100));
+    int pricePerShare = stockMarket.priceOf(share).value();
+
+    return new Portfolio(
+            stockMarket,
+            funds.withSubtracted(Funds.ofValue(pricePerShare)));
   }
 }
