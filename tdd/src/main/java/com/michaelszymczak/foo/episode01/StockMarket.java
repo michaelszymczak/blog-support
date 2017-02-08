@@ -9,7 +9,7 @@ public class StockMarket {
     return new StockMarket();
   }
 
-  public static StockMarket trading(Set<Company> companies)
+  public static StockMarket trading(Set<Share> companies)
   {
     return new StockMarket();
   }

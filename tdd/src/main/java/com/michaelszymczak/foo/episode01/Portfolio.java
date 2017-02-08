@@ -3,7 +3,9 @@ package com.michaelszymczak.foo.episode01;
 public class Portfolio {
 
   private final Funds funds;
+//  private final StockMarket stockMarket;
 
+  @Deprecated
   public static Portfolio emptyWithoutFunds()
   {
     return new Portfolio(Funds.ofValue(0));
@@ -14,7 +16,7 @@ public class Portfolio {
   }
 
   public static Portfolio investingOn(Object stockMarket) {
-    return Portfolio.emptyWithoutFunds();
+    return new Portfolio(Funds.ofValue(0));
   }
 
   public boolean hasFunds() {
@@ -29,7 +31,7 @@ public class Portfolio {
     return funds;
   }
 
-  public Portfolio afterBuying(String stocks) {
+  public Portfolio afterBuying(Share.Ticker share) {
     return new Portfolio(Funds.ofValue(100));
   }
 }

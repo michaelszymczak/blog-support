@@ -1,13 +1,18 @@
 package com.michaelszymczak.foo.episode01;
 
-public class Company {
+public class Share {
 
   public static Builder withTicker(String ticker)
   {
     return new Builder(new Ticker(ticker));
   }
 
-  public Company(Ticker ticker, PricePerShare pricePerShare) {
+  public static Ticker ticker(String ticker)
+  {
+    return new Ticker(ticker);
+  }
+
+  private Share(Ticker ticker, PricePerShare pricePerShare) {
   }
 
   public static class Ticker {
@@ -27,9 +32,9 @@ public class Company {
     public Builder(Ticker ticker) {
     }
 
-    public Company andPricePerShare(int value)
+    public Share andPricePerShare(int value)
     {
-      return new Company(ticker, new PricePerShare(value));
+      return new Share(ticker, new PricePerShare(value));
     }
   }
 }
