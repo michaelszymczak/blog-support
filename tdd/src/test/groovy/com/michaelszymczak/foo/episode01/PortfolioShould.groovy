@@ -1,6 +1,7 @@
 package com.michaelszymczak.foo.episode01
 
 import spock.lang.Specification
+import spock.lang.Unroll
 
 class PortfolioShould extends Specification {
 
@@ -40,7 +41,8 @@ class PortfolioShould extends Specification {
     1                    | 1                     | 2
   }
 
-  def "buy shares of one company"() {
+  @Unroll
+  def "buy shares of one company - given #initialFunds initial funds and #pricePerShare price per share, after buying #sharesBought shares should have #expectedAvailableFundsAfterTransaction funds after the transaction"() {
     given:
     def companyTicker = Share.ticker("VOD")
     def portfolio = Portfolio
