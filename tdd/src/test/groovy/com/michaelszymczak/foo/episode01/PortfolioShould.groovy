@@ -87,6 +87,27 @@ class PortfolioShould extends Specification {
     portfolioWithSomeStocks.shares() == sharesToBuy
   }
 
+  def "keep existing shares while purchasing new"() {
+    given:
+    def portfolio = Portfolio
+            .investingOn(StockMarket.trading(
+            [
+                    Share.identifiedBy(Share.ticker("FOO")).andPricePerShare(1),
+                    Share.identifiedBy(Share.ticker("BAR")).andPricePerShare(2)
+            ] as Set))
+            .afterAdding(Funds.ofValue(101))
+            .afterBuying([new CompanyShares(Share.ticker("FOO"), 1)])
+    when:
+    def portfolioWithSomeMoreStocks = portfolio.afterBuying([new CompanyShares(Share.ticker("BAR"), 3)])
+
+    then:
+    portfolioWithSomeMoreStocks.availableFunds() == Funds.ofValue(94)
+    portfolioWithSomeMoreStocks.shares() == [
+            new CompanyShares(Share.ticker("FOO"), 1),
+            new CompanyShares(Share.ticker("BAR"), 3)
+    ]
+  }
+
   private static Share.Ticker someCompanyTicker() {
     Share.ticker("VOD")
   }

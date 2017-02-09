@@ -38,14 +38,14 @@ public class Portfolio {
     return funds;
   }
 
-  public Portfolio afterBuying(List<CompanyShares> companyShares) {
+  public Portfolio afterBuying(List<CompanyShares> newCompanyShares) {
 
-    int totalPrice = companyShares.stream().mapToInt(share -> share.worthOn(stockMarket)).sum();
+    int totalPrice = newCompanyShares.stream().mapToInt(share -> share.worthOn(stockMarket)).sum();
 
     return new Portfolio(
             stockMarket,
             funds.withSubtracted(Funds.ofValue(totalPrice)),
-            companyShares
+            new ImmutableList.Builder<CompanyShares>().addAll(shares).addAll(newCompanyShares).build()
     );
   }
 
