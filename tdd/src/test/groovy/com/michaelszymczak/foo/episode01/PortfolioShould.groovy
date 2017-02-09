@@ -40,7 +40,7 @@ class PortfolioShould extends Specification {
     1                    | 1                     | 2
   }
 
-  def "buy a share"() {
+  def "buy shares of one company"() {
     given:
     def companyTicker = Share.ticker("VOD")
     def portfolio = Portfolio
@@ -48,16 +48,16 @@ class PortfolioShould extends Specification {
             .afterAdding(Funds.ofValue(initialFunds))
 
     when:
-    def portfolioWithSomeStocks = portfolio.afterBuying(new CompanyShares(companyTicker, 1))
+    def portfolioWithSomeStocks = portfolio.afterBuying(new CompanyShares(companyTicker, sharesBought))
 
     then:
     portfolioWithSomeStocks.availableFunds() == Funds.ofValue(expectedAvailableFundsAfterTransaction)
-    portfolioWithSomeStocks.shares() == [new CompanyShares(companyTicker, 1)]
+    portfolioWithSomeStocks.shares() == [new CompanyShares(companyTicker, sharesBought)]
 
     where:
-    initialFunds | pricePerShare | expectedAvailableFundsAfterTransaction
-    115          | 15            | 100
-    20           | 1             | 19
+    initialFunds | pricePerShare | sharesBought | expectedAvailableFundsAfterTransaction
+    115          | 15            | 1            | 100
+    20           | 1             | 1            | 19
   }
 
   private static final Funds someFunds() {
