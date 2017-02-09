@@ -10,6 +10,11 @@ public class Share extends Value {
     return new Builder(new Ticker(ticker));
   }
 
+  public static Builder identifiedBy(Ticker ticker)
+  {
+    return new Builder(ticker);
+  }
+
   public static Ticker ticker(String ticker)
   {
     return new Ticker(ticker);
