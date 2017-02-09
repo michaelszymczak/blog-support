@@ -40,9 +40,7 @@ public class Portfolio {
 
   public Portfolio afterBuying(List<CompanyShares> companyShares) {
 
-    int totalPrice = companyShares.stream()
-            .mapToInt(share -> stockMarket.priceOf(share.getCompany()).value() * share.getQuantity())
-            .sum();
+    int totalPrice = companyShares.stream().mapToInt(share -> share.worthOn(stockMarket)).sum();
 
     return new Portfolio(
             stockMarket,
