@@ -63,6 +63,30 @@ class PortfolioShould extends Specification {
     20           | 1             | 10       | 10
   }
 
+  def "should buy shares of more than one company at a time"() {
+    given:
+    def portfolio = Portfolio
+            .investingOn(StockMarket.trading(
+            [
+                    Share.identifiedBy(Share.ticker("FOO")).andPricePerShare(5),
+                    Share.identifiedBy(Share.ticker("BAR")).andPricePerShare(1),
+                    Share.identifiedBy(Share.ticker("BAZ")).andPricePerShare(7),
+            ] as Set))
+            .afterAdding(Funds.ofValue(100))
+    def sharesToBuy = [
+            new CompanyShares(Share.ticker("BAZ"), 3),
+            new CompanyShares(Share.ticker("FOO"), 5)
+    ]
+
+
+    when:
+    def portfolioWithSomeStocks = portfolio.afterBuying(sharesToBuy)
+
+    then:
+    portfolioWithSomeStocks.availableFunds() == Funds.ofValue(54)
+    portfolioWithSomeStocks.shares() == sharesToBuy
+  }
+
   private static Share.Ticker someCompanyTicker() {
     Share.ticker("VOD")
   }

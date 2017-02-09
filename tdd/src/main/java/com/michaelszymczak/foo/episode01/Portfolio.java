@@ -39,13 +39,15 @@ public class Portfolio {
   }
 
   public Portfolio afterBuying(List<CompanyShares> companyShares) {
-    CompanyShares companyShare = companyShares.get(0);
-    int pricePerShare = stockMarket.priceOf(companyShare.getCompany()).value();
+
+    int totalPrice = companyShares.stream()
+            .mapToInt(share -> stockMarket.priceOf(share.getCompany()).value() * share.getQuantity())
+            .sum();
 
     return new Portfolio(
             stockMarket,
-            funds.withSubtracted(Funds.ofValue(companyShare.getQuantity() * pricePerShare)),
-            ImmutableList.of(new CompanyShares(Share.ticker("VOD"), companyShare.getQuantity()))
+            funds.withSubtracted(Funds.ofValue(totalPrice)),
+            companyShares
     );
   }
 
