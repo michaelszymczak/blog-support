@@ -43,8 +43,8 @@ public class Portfolio {
 
     return new Portfolio(
             stockMarket,
-            funds.withSubtracted(Funds.ofValue(pricePerShare)),
-            ImmutableList.of(new CompanyShares(Share.ticker("VOD"), 1))
+            funds.withSubtracted(Funds.ofValue(companyShares.getQuantity() * pricePerShare)),
+            ImmutableList.of(new CompanyShares(Share.ticker("VOD"), companyShares.getQuantity()))
     );
   }
 

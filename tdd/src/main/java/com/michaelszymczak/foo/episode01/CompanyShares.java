@@ -13,4 +13,8 @@ public class CompanyShares extends Value
   public Share.Ticker getCompany() {
     return company;
   }
+
+  public int getQuantity() {
+    return quantity;
+  }
 }

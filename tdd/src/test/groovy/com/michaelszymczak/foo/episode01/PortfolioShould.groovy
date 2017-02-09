@@ -60,6 +60,8 @@ class PortfolioShould extends Specification {
     initialFunds | pricePerShare | sharesBought | expectedAvailableFundsAfterTransaction
     115          | 15            | 1            | 100
     20           | 1             | 1            | 19
+    115          | 15            | 5            | 40
+    20           | 1             | 10           | 10
   }
 
   private static final Funds someFunds() {
