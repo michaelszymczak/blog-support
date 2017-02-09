@@ -1,7 +1,5 @@
 package com.michaelszymczak.foo.episode01;
 
-import com.google.common.collect.ImmutableList;
-
 import java.util.List;
 
 public class Portfolio {
@@ -13,7 +11,7 @@ public class Portfolio {
   private Portfolio(StockMarket stockMarket, Funds funds) {
     this.funds = funds;
     this.stockMarket = stockMarket;
-    this.boughtShares = new BoughtShares(ImmutableList.of());
+    this.boughtShares = new BoughtShares.None();
   }
 
   private Portfolio(StockMarket stockMarket, Funds funds, BoughtShares boughtShares) {
@@ -45,7 +43,7 @@ public class Portfolio {
     return new Portfolio(
             stockMarket,
             funds.withSubtracted(Funds.ofValue(totalPrice)),
-            new BoughtShares(new ImmutableList.Builder<CompanyShares>().addAll(boughtShares.getShares()).addAll(newCompanyShares).build())
+            boughtShares.withSomeMore(newCompanyShares)
     );
   }
 
