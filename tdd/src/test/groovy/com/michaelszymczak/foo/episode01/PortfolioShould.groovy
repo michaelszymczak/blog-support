@@ -49,11 +49,11 @@ class PortfolioShould extends Specification {
             .afterAdding(Funds.ofValue(initialFunds))
 
     when:
-    def portfolioWithSomeStocks = portfolio.after(new BoughtShares([new CompanyShares(someCompanyTicker(), quantity)]))
+    def portfolioWithSomeStocks = portfolio.after(new BoughtShares([new CompanyShares(someCompanyTicker(), quantity)] as Set))
 
     then:
     portfolioWithSomeStocks.availableFunds() == Funds.ofValue(expectedAvailableFundsAfterTransaction)
-    portfolioWithSomeStocks.shares() == new BoughtShares([new CompanyShares(someCompanyTicker(), quantity)])
+    portfolioWithSomeStocks.shares() == new BoughtShares([new CompanyShares(someCompanyTicker(), quantity)] as Set)
 
     where:
     initialFunds | pricePerShare | quantity | expectedAvailableFundsAfterTransaction
@@ -76,7 +76,7 @@ class PortfolioShould extends Specification {
     def sharesToBuy = new BoughtShares([
             new CompanyShares(Share.ticker("BAZ"), 3),
             new CompanyShares(Share.ticker("FOO"), 5)
-    ])
+    ] as Set)
 
 
     when:
@@ -96,16 +96,16 @@ class PortfolioShould extends Specification {
                     Share.identifiedBy(Share.ticker("BAR")).andPricePerShare(2)
             ] as Set))
             .afterAdding(Funds.ofValue(101))
-            .after(new BoughtShares([new CompanyShares(Share.ticker("FOO"), 1)]))
+            .after(new BoughtShares([new CompanyShares(Share.ticker("FOO"), 1)] as Set))
     when:
-    def portfolioWithSomeMoreStocks = portfolio.after(new BoughtShares([new CompanyShares(Share.ticker("BAR"), 3)]))
+    def portfolioWithSomeMoreStocks = portfolio.after(new BoughtShares([new CompanyShares(Share.ticker("BAR"), 3)] as Set))
 
     then:
     portfolioWithSomeMoreStocks.availableFunds() == Funds.ofValue(94)
     portfolioWithSomeMoreStocks.shares() == new BoughtShares([
             new CompanyShares(Share.ticker("FOO"), 1),
             new CompanyShares(Share.ticker("BAR"), 3)
-    ])
+    ] as Set)
   }
 
   private static Share.Ticker someCompanyTicker() {
