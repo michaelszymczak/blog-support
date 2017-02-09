@@ -10,6 +10,7 @@ class PortfolioShould extends Specification {
 
     expect:
     !portfolio.hasFunds()
+    portfolio.shares().isEmpty()
   }
 
   def "accept funds"() {
@@ -46,10 +47,11 @@ class PortfolioShould extends Specification {
             .afterAdding(Funds.ofValue(initialFunds))
 
     when:
-    def portfolioWithSOmeStocks = portfolio.afterBuying(Share.ticker("VOD"))
+    def portfolioWithSomeStocks = portfolio.afterBuying(Share.ticker("VOD"))
 
     then:
-    portfolioWithSOmeStocks.availableFunds() == Funds.ofValue(expectedAvailableFundsAfterTransaction)
+    portfolioWithSomeStocks.availableFunds() == Funds.ofValue(expectedAvailableFundsAfterTransaction)
+    ! portfolioWithSomeStocks.shares().isEmpty()
 
     where:
     initialFunds | pricePerShare | expectedAvailableFundsAfterTransaction
