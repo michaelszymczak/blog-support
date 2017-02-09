@@ -44,32 +44,34 @@ class PortfolioShould extends Specification {
   @Unroll
   def "buy shares of one company - given #initialFunds initial funds and #pricePerShare price per share, after buying #sharesBought shares should have #expectedAvailableFundsAfterTransaction funds after the transaction"() {
     given:
-    def companyTicker = Share.ticker("VOD")
     def portfolio = Portfolio
-            .investingOn(StockMarket.trading([Share.identifiedBy(companyTicker).andPricePerShare(pricePerShare)] as Set))
+            .investingOn(StockMarket.trading([Share.identifiedBy(someCompanyTicker()).andPricePerShare(pricePerShare)] as Set))
             .afterAdding(Funds.ofValue(initialFunds))
 
     when:
-    def portfolioWithSomeStocks = portfolio.afterBuying(new CompanyShares(companyTicker, sharesBought))
+    def portfolioWithSomeStocks = portfolio.afterBuying([new CompanyShares(someCompanyTicker(), quantity)])
 
     then:
     portfolioWithSomeStocks.availableFunds() == Funds.ofValue(expectedAvailableFundsAfterTransaction)
-    portfolioWithSomeStocks.shares() == [new CompanyShares(companyTicker, sharesBought)]
+    portfolioWithSomeStocks.shares() == [new CompanyShares(someCompanyTicker(), quantity)]
 
     where:
-    initialFunds | pricePerShare | sharesBought | expectedAvailableFundsAfterTransaction
-    115          | 15            | 1            | 100
-    20           | 1             | 1            | 19
-    115          | 15            | 5            | 40
-    20           | 1             | 10           | 10
+    initialFunds | pricePerShare | quantity | expectedAvailableFundsAfterTransaction
+    115          | 15            | 1        | 100
+    20           | 1             | 1        | 19
+    115          | 15            | 5        | 40
+    20           | 1             | 10       | 10
+  }
+
+  private static Share.Ticker someCompanyTicker() {
+    Share.ticker("VOD")
   }
 
   private static final Funds someFunds() {
     Funds.ofValue(100)
   }
 
-  private static final StockMarket someStockMarket()
-  {
+  private static final StockMarket someStockMarket() {
     return new StockMarket([] as Set)
   }
 }
