@@ -93,18 +93,22 @@ class PortfolioShould extends Specification {
             .investingOn(StockMarket.trading(
             [
                     Share.identifiedBy(Share.ticker("FOO")).andPricePerShare(1),
-                    Share.identifiedBy(Share.ticker("BAR")).andPricePerShare(2)
+                    Share.identifiedBy(Share.ticker("BAR")).andPricePerShare(2),
+                    Share.identifiedBy(Share.ticker("BAZ")).andPricePerShare(3)
             ] as Set))
-            .afterAdding(Funds.ofValue(101))
-            .after(new BoughtShares([new CompanyShares(Share.ticker("FOO"), 1)] as Set))
+            .afterAdding(Funds.ofValue(123))
+            .after(new BoughtShares([new CompanyShares(Share.ticker("FOO"), 1), new CompanyShares(Share.ticker("BAR"), 5)] as Set))
     when:
-    def portfolioWithSomeMoreStocks = portfolio.after(new BoughtShares([new CompanyShares(Share.ticker("BAR"), 3)] as Set))
+    def portfolioWithSomeMoreStocks = portfolio.after(new BoughtShares([
+            new CompanyShares(Share.ticker("BAR"), 3), new CompanyShares(Share.ticker("BAZ"), 2)
+    ] as Set))
 
     then:
-    portfolioWithSomeMoreStocks.availableFunds() == Funds.ofValue(94)
+    portfolioWithSomeMoreStocks.availableFunds() == Funds.ofValue(100)
     portfolioWithSomeMoreStocks.shares() == new BoughtShares([
             new CompanyShares(Share.ticker("FOO"), 1),
-            new CompanyShares(Share.ticker("BAR"), 3)
+            new CompanyShares(Share.ticker("BAR"), 8),
+            new CompanyShares(Share.ticker("BAZ"), 2)
     ] as Set)
   }
 
