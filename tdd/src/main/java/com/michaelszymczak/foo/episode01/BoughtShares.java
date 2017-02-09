@@ -11,10 +11,6 @@ public class BoughtShares extends Value {
     this.shares = ImmutableList.copyOf(shares);
   }
 
-  public List<CompanyShares> getShares() {
-    return shares;
-  }
-
   public int totalPriceOn(StockMarket stockMarket)
   {
     return shares.stream().mapToInt(share -> share.worthOn(stockMarket)).sum();

@@ -1,7 +1,5 @@
 package com.michaelszymczak.foo.episode01;
 
-import java.util.List;
-
 public class Portfolio {
 
   private final Funds funds;
@@ -42,11 +40,6 @@ public class Portfolio {
             funds.withSubtracted(Funds.ofValue(newlyBoughtShares.totalPriceOn(stockMarket))),
             boughtShares.withMore(newlyBoughtShares)
     );
-  }
-
-  @Deprecated
-  public List<CompanyShares> sharesList() {
-    return boughtShares.getShares();
   }
 
   public BoughtShares shares() {

@@ -11,7 +11,7 @@ class PortfolioShould extends Specification {
 
     expect:
     !portfolio.hasFunds()
-    portfolio.sharesList().isEmpty()
+    portfolio.shares() == new BoughtShares.None()
   }
 
   def "accept funds"() {
@@ -53,7 +53,7 @@ class PortfolioShould extends Specification {
 
     then:
     portfolioWithSomeStocks.availableFunds() == Funds.ofValue(expectedAvailableFundsAfterTransaction)
-    portfolioWithSomeStocks.sharesList() == [new CompanyShares(someCompanyTicker(), quantity)]
+    portfolioWithSomeStocks.shares() == new BoughtShares([new CompanyShares(someCompanyTicker(), quantity)])
 
     where:
     initialFunds | pricePerShare | quantity | expectedAvailableFundsAfterTransaction
@@ -84,7 +84,7 @@ class PortfolioShould extends Specification {
 
     then:
     portfolioWithSomeStocks.availableFunds() == Funds.ofValue(54)
-    portfolioWithSomeStocks.sharesList() == sharesToBuy.shares
+    portfolioWithSomeStocks.shares() == sharesToBuy
   }
 
   def "keep existing shares while purchasing new"() {
@@ -102,10 +102,10 @@ class PortfolioShould extends Specification {
 
     then:
     portfolioWithSomeMoreStocks.availableFunds() == Funds.ofValue(94)
-    portfolioWithSomeMoreStocks.sharesList() == [
+    portfolioWithSomeMoreStocks.shares() == new BoughtShares([
             new CompanyShares(Share.ticker("FOO"), 1),
             new CompanyShares(Share.ticker("BAR"), 3)
-    ]
+    ])
   }
 
   private static Share.Ticker someCompanyTicker() {
