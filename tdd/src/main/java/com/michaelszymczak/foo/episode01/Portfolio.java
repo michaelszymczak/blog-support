@@ -39,11 +39,7 @@ public class Portfolio {
   }
 
   public Portfolio afterBuying(CompanyShares companyShares) {
-    return afterBuying(companyShares.getCompany());
-  }
-
-  public Portfolio afterBuying(Share.Ticker share) {
-    int pricePerShare = stockMarket.priceOf(share).value();
+    int pricePerShare = stockMarket.priceOf(companyShares.getCompany()).value();
 
     return new Portfolio(
             stockMarket,
