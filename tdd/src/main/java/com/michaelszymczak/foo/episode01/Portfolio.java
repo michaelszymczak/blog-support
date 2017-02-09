@@ -8,18 +8,18 @@ public class Portfolio {
 
   private final Funds funds;
   private final StockMarket stockMarket;
-  private final List<CompanyShares> shares;
+  private final BoughtShares boughtShares;
 
   private Portfolio(StockMarket stockMarket, Funds funds) {
     this.funds = funds;
     this.stockMarket = stockMarket;
-    this.shares = ImmutableList.of();
+    this.boughtShares = new BoughtShares(ImmutableList.of());
   }
 
-  private Portfolio(StockMarket stockMarket, Funds funds, List<CompanyShares> shares) {
+  private Portfolio(StockMarket stockMarket, Funds funds, BoughtShares boughtShares) {
     this.funds = funds;
     this.stockMarket = stockMarket;
-    this.shares = ImmutableList.copyOf(shares);
+    this.boughtShares = boughtShares;
   }
 
   public static Portfolio investingOn(StockMarket stockMarket) {
@@ -45,11 +45,11 @@ public class Portfolio {
     return new Portfolio(
             stockMarket,
             funds.withSubtracted(Funds.ofValue(totalPrice)),
-            new ImmutableList.Builder<CompanyShares>().addAll(shares).addAll(newCompanyShares).build()
+            new BoughtShares(new ImmutableList.Builder<CompanyShares>().addAll(boughtShares.getShares()).addAll(newCompanyShares).build())
     );
   }
 
   public List<CompanyShares> shares() {
-    return shares;
+    return boughtShares.getShares();
   }
 }
