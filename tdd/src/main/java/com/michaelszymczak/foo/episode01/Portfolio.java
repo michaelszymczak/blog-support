@@ -44,7 +44,13 @@ public class Portfolio {
     );
   }
 
-  public List<CompanyShares> shares() {
+  @Deprecated
+  public List<CompanyShares> sharesList() {
     return boughtShares.getShares();
   }
+
+  public BoughtShares shares() {
+    return boughtShares;
+  }
+
 }
