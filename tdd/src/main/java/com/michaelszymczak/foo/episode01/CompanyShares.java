@@ -9,4 +9,8 @@ public class CompanyShares extends Value
     this.company = company;
     this.quantity = quantity;
   }
+
+  public Share.Ticker getCompany() {
+    return company;
+  }
 }

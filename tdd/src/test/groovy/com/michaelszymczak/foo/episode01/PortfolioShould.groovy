@@ -59,7 +59,6 @@ class PortfolioShould extends Specification {
     20           | 1             | 19
   }
 
-
   private static final Funds someFunds() {
     Funds.ofValue(100)
   }
