@@ -10,14 +10,6 @@ public class CompanyShares extends Value
     this.quantity = quantity;
   }
 
-  public Share.Ticker getCompany() {
-    return company;
-  }
-
-  public int getQuantity() {
-    return quantity;
-  }
-
   public int worthOn(StockMarket stockMarket) {
     return stockMarket.priceOf(company).value() * quantity;
   }
