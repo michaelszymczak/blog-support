@@ -17,7 +17,7 @@ public class StockMarket {
     return new StockMarket(companies);
   }
 
-  public Share.PricePerShare priceOf(final Share.Ticker share) {
+  public PricePerShare priceOf(final Ticker share) {
     return listedCompanies.stream()
             .filter(it -> it.matches(share))
             .map(Share::pricePerShare)

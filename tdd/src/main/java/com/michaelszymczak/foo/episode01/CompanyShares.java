@@ -2,10 +2,10 @@ package com.michaelszymczak.foo.episode01;
 
 public class CompanyShares extends Value
 {
-  private final Share.Ticker company;
+  private final Ticker company;
   private final int quantity;
 
-  public CompanyShares(Share.Ticker company, int quantity) {
+  public CompanyShares(Ticker company, int quantity) {
     this.company = company;
     this.quantity = quantity;
   }
@@ -14,7 +14,7 @@ public class CompanyShares extends Value
     return stockMarket.priceOf(company).value() * quantity;
   }
 
-  public Share.Ticker getCompany() {
+  public Ticker getCompany() {
     return company;
   }
 

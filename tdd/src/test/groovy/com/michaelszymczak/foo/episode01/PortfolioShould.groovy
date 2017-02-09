@@ -112,7 +112,7 @@ class PortfolioShould extends Specification {
     ] as Set)
   }
 
-  private static Share.Ticker someCompanyTicker() {
+  private static Ticker someCompanyTicker() {
     Share.ticker("VOD")
   }
 

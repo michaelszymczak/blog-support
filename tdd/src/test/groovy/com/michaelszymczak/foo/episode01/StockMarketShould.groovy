@@ -11,7 +11,7 @@ class StockMarketShould extends Specification {
     ] as Set)
 
     expect:
-    stockMarket.priceOf(Share.ticker("FOO")) == new Share.PricePerShare(20)
-    stockMarket.priceOf(Share.ticker("BAR")) == new Share.PricePerShare(40)
+    stockMarket.priceOf(Share.ticker("FOO")) == new PricePerShare(20)
+    stockMarket.priceOf(Share.ticker("BAR")) == new PricePerShare(40)
   }
 }
