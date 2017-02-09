@@ -49,7 +49,7 @@ class PortfolioShould extends Specification {
             .afterAdding(Funds.ofValue(initialFunds))
 
     when:
-    def portfolioWithSomeStocks = portfolio.afterBuying([new CompanyShares(someCompanyTicker(), quantity)])
+    def portfolioWithSomeStocks = portfolio.after(new BoughtShares([new CompanyShares(someCompanyTicker(), quantity)]))
 
     then:
     portfolioWithSomeStocks.availableFunds() == Funds.ofValue(expectedAvailableFundsAfterTransaction)
@@ -73,18 +73,18 @@ class PortfolioShould extends Specification {
                     Share.identifiedBy(Share.ticker("BAZ")).andPricePerShare(7),
             ] as Set))
             .afterAdding(Funds.ofValue(100))
-    def sharesToBuy = [
+    def sharesToBuy = new BoughtShares([
             new CompanyShares(Share.ticker("BAZ"), 3),
             new CompanyShares(Share.ticker("FOO"), 5)
-    ]
+    ])
 
 
     when:
-    def portfolioWithSomeStocks = portfolio.afterBuying(sharesToBuy)
+    def portfolioWithSomeStocks = portfolio.after(sharesToBuy)
 
     then:
     portfolioWithSomeStocks.availableFunds() == Funds.ofValue(54)
-    portfolioWithSomeStocks.shares() == sharesToBuy
+    portfolioWithSomeStocks.shares() == sharesToBuy.shares
   }
 
   def "keep existing shares while purchasing new"() {
@@ -96,9 +96,9 @@ class PortfolioShould extends Specification {
                     Share.identifiedBy(Share.ticker("BAR")).andPricePerShare(2)
             ] as Set))
             .afterAdding(Funds.ofValue(101))
-            .afterBuying([new CompanyShares(Share.ticker("FOO"), 1)])
+            .after(new BoughtShares([new CompanyShares(Share.ticker("FOO"), 1)]))
     when:
-    def portfolioWithSomeMoreStocks = portfolio.afterBuying([new CompanyShares(Share.ticker("BAR"), 3)])
+    def portfolioWithSomeMoreStocks = portfolio.after(new BoughtShares([new CompanyShares(Share.ticker("BAR"), 3)]))
 
     then:
     portfolioWithSomeMoreStocks.availableFunds() == Funds.ofValue(94)

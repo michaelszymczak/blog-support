@@ -15,11 +15,16 @@ public class BoughtShares extends Value {
     return shares;
   }
 
-  public BoughtShares withSomeMore(List<CompanyShares> companyShares)
+  public int totalPriceOn(StockMarket stockMarket)
+  {
+    return shares.stream().mapToInt(share -> share.worthOn(stockMarket)).sum();
+  }
+
+  public BoughtShares withMore(BoughtShares boughtShares)
   {
     return new BoughtShares(new ImmutableList.Builder<CompanyShares>()
             .addAll(shares)
-            .addAll(companyShares)
+            .addAll(boughtShares.shares)
             .build());
   }
 
