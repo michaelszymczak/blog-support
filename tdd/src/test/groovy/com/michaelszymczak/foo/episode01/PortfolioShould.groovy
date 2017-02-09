@@ -51,7 +51,7 @@ class PortfolioShould extends Specification {
 
     then:
     portfolioWithSomeStocks.availableFunds() == Funds.ofValue(expectedAvailableFundsAfterTransaction)
-    ! portfolioWithSomeStocks.shares().isEmpty()
+    portfolioWithSomeStocks.shares() == [new CompanyShares(Share.ticker("VOD"), 1)]
 
     where:
     initialFunds | pricePerShare | expectedAvailableFundsAfterTransaction
