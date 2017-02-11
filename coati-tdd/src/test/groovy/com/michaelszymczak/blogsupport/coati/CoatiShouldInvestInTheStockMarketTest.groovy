@@ -15,23 +15,28 @@ class CoatiShouldInvestInTheStockMarketTest extends Specification {
 
   def "buy some shares having enough funds"() {
     given:
-    'stock market listing' 'GOOG sold USD 813.67 per share'
-    'available funds' 'USD 100000'
+    'stock market listing' companies
+    'available funds of' someInitialAmount
     'no shares'()
 
     when:
-    'bought' '10 shares of GOOG'
+    'bought' someShares
 
     then:
-    'available funds should be' 'USD 91863.30'
-    'should have' '10 shares of GOOG'
+    'available funds should be' initialFundsAfterBuyingSomeShares
+    'should have' someShares
+
+    where:
+    companies                        | someInitialAmount | someShares          | initialFundsAfterBuyingSomeShares
+    'GOOG sold USD 813.67 per share' | 'USD 100000'      | '10 shares of GOOG' | 'USD 91863.30'
+ // 'TWTR sold USD 1 per share'      | 'USD 10'          | '5 shares of TWTR'  | 'USD 5' // TODO
   }
 
   private void 'stock market listing'(String infoAboutListedCompanies) {
     stockMarket = new StockMarket(listedCompaniesBasedOn(infoAboutListedCompanies))
   }
 
-  private void 'available funds'(String funds) {
+  private void 'available funds of'(String funds) {
     initialFunds = Money.parse(funds)
   }
 
