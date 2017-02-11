@@ -4,6 +4,8 @@ import spock.lang.Specification
 
 class CoatiShouldInvestInTheStockMarketTest extends Specification {
 
+  private Coati coati
+
   def "buy some shares having enough funds"() {
     given:
     'stock market listing GOOG sold USD 813.67 per share'()
@@ -25,6 +27,7 @@ class CoatiShouldInvestInTheStockMarketTest extends Specification {
   }
 
   private void 'no shares'() {
+    coati = new Coati()
   }
 
   private void 'bought 10 of GOOG'() {
@@ -34,6 +37,7 @@ class CoatiShouldInvestInTheStockMarketTest extends Specification {
   }
 
   private void 'should have 10 shares of GOOG'() {
+    assert coati.portfolio() == Portfolio.with([CompanyShares.of("GOOGL", 10)])
   }
 
 }
