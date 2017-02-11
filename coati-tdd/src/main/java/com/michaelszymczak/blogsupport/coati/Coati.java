@@ -29,7 +29,7 @@ public class Coati {
 
   public Portfolio portfolio() {
     // TODO
-    return new Portfolio(ImmutableList.of(CompanyShares.of("GOOGL", 10)));
+    return new Portfolio(ImmutableList.of(CompanyShares.of("GOOG", 10)));
   }
 
   public Money funds() {

@@ -5,7 +5,11 @@ import com.michaelszymczak.blogsupport.coati.CompanyShares
 class CompanySharesFixtures {
   private final ExtractedData data
 
-  CompanySharesFixtures(String input) {
+  static List<CompanyShares> companySharesBasedOn(String infoAboutCompanyShares) {
+    new CompanySharesFixtures(infoAboutCompanyShares).companyShares()
+  }
+
+  private CompanySharesFixtures(String input) {
     this.data = new ExtractedData("(.+) shares of (.+)", input, 2)
   }
 
