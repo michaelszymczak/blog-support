@@ -7,6 +7,10 @@ import spock.lang.Specification
 class ListedCompanyFixturesTest extends Specification {
   def "should parse listed companies"() {
     expect:
-    new ListedCompanyFixtures('GOOG sold USD 813.67 per share').listedCompanies() == [new ListedCompany("GOOG", Money.parse('USD 813.67'))]
+    new ListedCompanyFixtures(input).listedCompanies() == expectedListedCompanies
+
+    where:
+    input                            | expectedListedCompanies
+    'GOOG sold USD 813.67 per share' | [new ListedCompany("GOOG", Money.parse('USD 813.67'))]
   }
 }
