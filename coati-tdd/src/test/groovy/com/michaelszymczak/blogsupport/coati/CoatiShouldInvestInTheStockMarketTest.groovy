@@ -1,5 +1,6 @@
 package com.michaelszymczak.blogsupport.coati
 
+import org.joda.money.Money
 import spock.lang.Specification
 
 class CoatiShouldInvestInTheStockMarketTest extends Specification {
@@ -34,6 +35,7 @@ class CoatiShouldInvestInTheStockMarketTest extends Specification {
   }
 
   private void 'available funds should be USD 91863.30'() {
+    assert coati.funds() == Money.parse('USD 91863.30')
   }
 
   private void 'should have 10 shares of GOOG'() {
