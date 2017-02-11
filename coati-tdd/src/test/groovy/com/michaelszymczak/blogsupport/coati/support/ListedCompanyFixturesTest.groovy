@@ -12,5 +12,6 @@ class ListedCompanyFixturesTest extends Specification {
     where:
     input                            | expectedListedCompanies
     'GOOG sold USD 813.67 per share' | [new ListedCompany("GOOG", Money.parse('USD 813.67'))]
+    'TWTR sold USD 15.58 per share'  | [new ListedCompany("TWTR", Money.parse('USD 15.58'))]
   }
 }

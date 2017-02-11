@@ -4,6 +4,8 @@ import com.michaelszymczak.blogsupport.coati.support.ListedCompanyFixtures
 import org.joda.money.Money
 import spock.lang.Specification
 
+import static com.michaelszymczak.blogsupport.coati.support.ListedCompanyFixtures.listedCompaniesBasedOn
+
 class CoatiShouldInvestInTheStockMarketTest extends Specification {
 
   private Coati coati
@@ -25,9 +27,8 @@ class CoatiShouldInvestInTheStockMarketTest extends Specification {
     'should have 10 shares of GOOG'()
   }
 
-  private void 'stock market listing'(String listed) {
-    def listedCompanies = new ListedCompanyFixtures(listed).listedCompanies()
-    stockMarket = new StockMarket(listedCompanies)
+  private void 'stock market listing'(String infoAboutListedCompanies) {
+    stockMarket = new StockMarket(listedCompaniesBasedOn(infoAboutListedCompanies))
   }
 
   private void 'available funds USD 100000'() {
