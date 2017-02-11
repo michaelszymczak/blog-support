@@ -22,6 +22,7 @@ repositories {
 dependencies {
     compile 'com.google.guava:guava:21.0'
     compile 'org.apache.commons:commons-lang3:3.5'
+    compile 'org.joda:joda-money:0.12'
 
     testCompile 'org.codehaus.groovy:groovy-all:2.4.7'
     testCompile 'org.spockframework:spock-core:1.0-groovy-2.4'
