@@ -1,4 +1,4 @@
-package com.michaelszymczak.foo;
+package com.michaelszymczak.blogsupport;
 
 public class Tdd {
     public String getGreeting() {

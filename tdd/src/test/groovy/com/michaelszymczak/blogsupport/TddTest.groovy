@@ -1,4 +1,4 @@
-package com.michaelszymczak.foo
+package com.michaelszymczak.blogsupport
 
 import spock.lang.Specification
 

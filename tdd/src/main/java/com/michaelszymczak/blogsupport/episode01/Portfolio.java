@@ -1,4 +1,4 @@
-package com.michaelszymczak.foo.episode01;
+package com.michaelszymczak.blogsupport.episode01;
 
 public class Portfolio {
 

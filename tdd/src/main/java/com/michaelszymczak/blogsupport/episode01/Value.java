@@ -1,4 +1,4 @@
-package com.michaelszymczak.foo.episode01;
+package com.michaelszymczak.blogsupport.episode01;
 
 import org.apache.commons.lang3.builder.ToStringStyle;
 
