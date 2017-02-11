@@ -5,6 +5,12 @@ public class CompanyShares {
   private final String ticker;
   private final int howMany;
 
+  public CompanyShares(String ticker, int howMany) {
+    this.ticker = ticker;
+    this.howMany = howMany;
+  }
+
+
   @Override
   public boolean equals(Object o) {
     if (this == o) return true;
@@ -28,10 +34,11 @@ public class CompanyShares {
     return new CompanyShares(ticker, howMany);
   }
 
-  public CompanyShares(String ticker, int howMany) {
-    this.ticker = ticker;
-    this.howMany = howMany;
+  @Override
+  public String toString() {
+    return "CompanyShares{" +
+            "ticker='" + ticker + '\'' +
+            ", howMany=" + howMany +
+            '}';
   }
-
-
 }

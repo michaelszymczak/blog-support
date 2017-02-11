@@ -1,6 +1,5 @@
 package com.michaelszymczak.blogsupport.coati
 
-import com.michaelszymczak.blogsupport.coati.support.ListedCompanyFixtures
 import org.joda.money.Money
 import spock.lang.Specification
 
@@ -16,11 +15,11 @@ class CoatiShouldInvestInTheStockMarketTest extends Specification {
   def "buy some shares having enough funds"() {
     given:
     'stock market listing' 'GOOG sold USD 813.67 per share'
-    'available funds USD 100000'()
+    'available funds' 'USD 100000'
     'no shares'()
 
     when:
-    'bought 10 of GOOG'()
+    'bought' '10 shares of GOOG'
 
     then:
     'available funds should be USD 91863.30'()
@@ -31,15 +30,15 @@ class CoatiShouldInvestInTheStockMarketTest extends Specification {
     stockMarket = new StockMarket(listedCompaniesBasedOn(infoAboutListedCompanies))
   }
 
-  private void 'available funds USD 100000'() {
-    initialFunds = Money.parse('USD 100000')
+  private void 'available funds'(String funds) {
+    initialFunds = Money.parse(funds)
   }
 
   private void 'no shares'() {
     initialShares = []
   }
 
-  private void 'bought 10 of GOOG'() {
+  private void 'bought'(String what) {
     coati = new Coati(stockMarket, initialFunds, initialShares)
     coati = coati.bought([CompanyShares.of("GOOGL", 10)])
   }
