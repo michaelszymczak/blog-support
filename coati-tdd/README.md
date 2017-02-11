@@ -2,6 +2,15 @@
 
 [![Build Status](https://travis-ci.org/michaelszymczak/blog-support.svg?branch=coati-tdd)](https://travis-ci.org/michaelszymczak/blog-support)
 
+                              .::     
+                              .::     
+    .:::   .::       .::    .:.: .:  /
+  .::    .::  .::  .::  .::   .::   //
+ .::    .::    .::.::   .::   .::  // 
+  .::    .::  .:: .::   .::   .::     
+    .:::   .::      .:: .:::   .::()  
+
+
 To run:
 
     ./gradlew clean build shadowJar
