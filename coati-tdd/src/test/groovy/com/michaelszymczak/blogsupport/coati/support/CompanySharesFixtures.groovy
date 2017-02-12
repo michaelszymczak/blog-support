@@ -1,6 +1,7 @@
 package com.michaelszymczak.blogsupport.coati.support
 
 import com.michaelszymczak.blogsupport.coati.CompanyShares
+import com.michaelszymczak.blogsupport.coati.support.parsing.ExtractedData
 
 class CompanySharesFixtures {
   private final ExtractedData data
@@ -10,7 +11,7 @@ class CompanySharesFixtures {
   }
 
   private CompanySharesFixtures(String input) {
-    this.data = new ExtractedData("(.+) shares of (.+)", input)
+    this.data = ExtractedData.simpleData("(.+) shares of (.+)", input)
   }
 
   List<CompanyShares> companyShares() {

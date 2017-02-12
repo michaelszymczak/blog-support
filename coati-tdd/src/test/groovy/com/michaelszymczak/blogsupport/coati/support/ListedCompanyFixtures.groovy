@@ -1,6 +1,7 @@
 package com.michaelszymczak.blogsupport.coati.support
 
 import com.michaelszymczak.blogsupport.coati.ListedCompany
+import com.michaelszymczak.blogsupport.coati.support.parsing.ExtractedData
 import org.joda.money.Money
 
 class ListedCompanyFixtures {
@@ -12,7 +13,7 @@ class ListedCompanyFixtures {
   }
 
   private ListedCompanyFixtures(String input) {
-    this.data = new ExtractedData("(.+) sold (.+) per share", input)
+    this.data = ExtractedData.simpleData("(.+) sold (.+) per share", input)
   }
 
   List<ListedCompany> listedCompanies() {
