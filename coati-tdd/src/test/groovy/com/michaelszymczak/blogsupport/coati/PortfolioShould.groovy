@@ -1,6 +1,7 @@
 package com.michaelszymczak.blogsupport.coati
 
 import org.joda.money.Money
+import spock.lang.Ignore
 import spock.lang.Specification
 
 class PortfolioShould extends Specification {
@@ -84,6 +85,22 @@ class PortfolioShould extends Specification {
     portfolio.afterBuying([CompanyShares.of(ticker("FOO"), 5)]) == Portfolio.tradingOn(stockMarket)
             .with(usd(95), [CompanyShares.of(ticker("BAR"), 7), CompanyShares.of(ticker("FOO"), 5)])
   }
+
+  @Ignore
+  def "buy more shares of the same company"() {
+    given:
+    def stockMarket = StockMarket.listing([
+            new ListedCompany(ticker("FOO"), usd(1)),
+    ])
+
+    def portfolio = Portfolio.tradingOn(stockMarket)
+            .with(usd(100), [CompanyShares.of(ticker("FOO"), 7)])
+
+    expect:
+    portfolio.afterBuying([CompanyShares.of(ticker("FOO"), 5)]) == Portfolio.tradingOn(stockMarket)
+            .with(usd(95), [CompanyShares.of(ticker("FOO"), 12)])
+  }
+
 
   private static Money usd(def howMany) {
     Money.parse("USD $howMany")
