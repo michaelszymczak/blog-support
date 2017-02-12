@@ -6,6 +6,8 @@ import com.michaelszymczak.blogsupport.coati.support.parsing.ExtractedData
 import com.michaelszymczak.blogsupport.coati.support.parsing.SplittingPattern
 import org.joda.money.Money
 
+import static com.michaelszymczak.blogsupport.coati.support.parsing.ExtractedData.data
+
 class ListedCompanyFixtures {
 
   private static final SplittingPattern PATTERN = { "(.+) sold (.+) per share" }
@@ -16,7 +18,7 @@ class ListedCompanyFixtures {
   }
 
   private ListedCompanyFixtures(String input) {
-    this.data = ExtractedData.data(new SplittingPattern.And(input), PATTERN, input)
+    this.data = data(PATTERN, input)
   }
 
   private List<ListedCompany> listedCompanies() {

@@ -19,7 +19,7 @@ class ComplexExtractedData  implements ExtractedData {
   @Override
   List<?> extracted() {
     data.extracted()
-            .collect { data({ pattern.pattern() }, it as String) }
+            .collect { new SimpleExtractedData({ pattern.pattern() }, it as String) }
             .collect { it.extracted() }
   }
 }

@@ -4,6 +4,8 @@ import com.michaelszymczak.blogsupport.coati.CompanyShares
 import com.michaelszymczak.blogsupport.coati.support.parsing.ExtractedData
 import com.michaelszymczak.blogsupport.coati.support.parsing.SplittingPattern
 
+import static com.michaelszymczak.blogsupport.coati.support.parsing.ExtractedData.data
+
 class CompanySharesFixtures {
 
   private static final SplittingPattern PATTERN = { "(.+) shares of (.+)" }
@@ -14,7 +16,7 @@ class CompanySharesFixtures {
   }
 
   private CompanySharesFixtures(String input) {
-    this.data = ExtractedData.data(new SplittingPattern.And(input), PATTERN, input)
+    this.data = data(PATTERN, input)
   }
 
   List<CompanyShares> companyShares() {

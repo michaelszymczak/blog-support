@@ -6,7 +6,7 @@ class ExtractedDataShould extends Specification {
   def "extract data using provided pattern"() {
     given:
     expect: ExtractedData.data({ "(.+) sold (.+) per share" }, "FOO sold USD 15.00 per share").extracted() == [
-            "FOO", "USD 15.00"
+            ["FOO", "USD 15.00"]
     ]
   }
 
@@ -14,7 +14,6 @@ class ExtractedDataShould extends Specification {
     given:
     String input = "FOO sold USD 15.00 per share and BAR sold USD 30.00 per share"
     def data = ExtractedData.data(
-            new SplittingPattern.And(input),
             { "(.+) sold (.+) per share" },
             input)
 
