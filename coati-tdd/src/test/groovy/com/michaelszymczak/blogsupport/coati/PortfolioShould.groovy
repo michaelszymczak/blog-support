@@ -70,6 +70,21 @@ class PortfolioShould extends Specification {
             .with(usd(84), sharesToBuy)
   }
 
+  def "buy more shares of another company"() {
+    given:
+    def stockMarket = StockMarket.listing([
+            new ListedCompany(ticker("FOO"), usd(1)),
+            new ListedCompany(ticker("BAR"), usd(2))
+    ])
+
+    def portfolio = Portfolio.tradingOn(stockMarket)
+            .with(usd(100), [CompanyShares.of(ticker("BAR"), 7)])
+
+    expect:
+    portfolio.afterBuying([CompanyShares.of(ticker("FOO"), 5)]) == Portfolio.tradingOn(stockMarket)
+            .with(usd(95), [CompanyShares.of(ticker("BAR"), 7), CompanyShares.of(ticker("FOO"), 5)])
+  }
+
   private static Money usd(def howMany) {
     Money.parse("USD $howMany")
   }

@@ -31,10 +31,15 @@ public class Portfolio extends Value {
   }
 
   public Portfolio afterBuying(List<CompanyShares> shares) {
+    final List<CompanyShares> sharesAfterTransaction = new ImmutableList.Builder<CompanyShares>()
+            .addAll(this.shares)
+            .addAll(shares)
+            .build();
+
     return new Portfolio(
             stockMarket,
             funds.minus(stockMarket.priceOf(shares)),
-            shares
+            sharesAfterTransaction
     );
   }
 }
