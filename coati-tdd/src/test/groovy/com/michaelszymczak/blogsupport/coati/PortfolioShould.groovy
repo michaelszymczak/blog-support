@@ -24,7 +24,7 @@ class PortfolioShould extends Specification {
     where:
     ticker | pricePerShare | initialFunds | expectedFundsAfterThePurchase
     "FOO"  | usd(10)       | usd(60)      | usd(50)
-//    "BAR"  | usd(1)        | usd(100)     | usd(99) // TODO
+    "BAR"  | usd(1)        | usd(100)     | usd(99)
   }
 
   private static Money usd(def howMany) {

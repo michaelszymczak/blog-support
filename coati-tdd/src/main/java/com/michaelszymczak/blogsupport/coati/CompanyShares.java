@@ -13,4 +13,8 @@ public class CompanyShares extends Value {
   public static CompanyShares of(String ticker, int howMany) {
     return new CompanyShares(ticker, howMany);
   }
+
+  public String ticker() {
+    return ticker;
+  }
 }

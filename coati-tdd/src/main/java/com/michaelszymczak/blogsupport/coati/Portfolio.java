@@ -39,6 +39,6 @@ public class Portfolio extends Value {
   }
 
   public Portfolio afterBuying(List<CompanyShares> shares) {
-    return new Portfolio(stockMarket, funds.minus(10), shares);
+    return new Portfolio(stockMarket, funds.minus(stockMarket.priceOf(shares.get(0).ticker())), shares);
   }
 }
