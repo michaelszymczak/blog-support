@@ -12,37 +12,37 @@ class StockMarketShould extends Specification {
     stockMarket.priceOf(company) == pricePerShare
 
     where:
-    company | pricePerShare
-    "GOOG"  | usd(100)
-    "FOO"   | usd(5)
+    company        | pricePerShare
+    ticker("GOOG") | usd(100)
+    ticker("FOO")  | usd(5)
   }
 
   def "tell the price of company shares"() {
     given:
     def stockMarket = StockMarket.listing([
-            new ListedCompany("GOOG", usd(4)),
-            new ListedCompany("TWTR", usd(3)),
+            new ListedCompany(ticker("GOOG"), usd(4)),
+            new ListedCompany(ticker("TWTR"), usd(3)),
     ])
 
     expect:
     stockMarket.priceOf(shares) == expectedPrice
 
     where:
-    shares                        | expectedPrice
-    new CompanyShares("GOOG", 10) | usd(40)
-    new CompanyShares("TWTR", 20) | usd(60)
+    shares                                | expectedPrice
+    CompanyShares.of(ticker("GOOG"), 10) | usd(40)
+    CompanyShares.of(ticker("TWTR"), 20) | usd(60)
   }
 
 
   def "tell the total price of shares of many companies"() {
     given:
     def stockMarket = StockMarket.listing([
-            new ListedCompany("GOOG", usd(4)),
-            new ListedCompany("TWTR", usd(3)),
+            new ListedCompany(ticker("GOOG"), usd(4)),
+            new ListedCompany(ticker("TWTR"), usd(3)),
     ])
     def sharesToBuy = [
-            new CompanyShares("GOOG", 10),
-            new CompanyShares("TWTR", 20)
+            CompanyShares.of(ticker("GOOG"), 10),
+            CompanyShares.of(ticker("TWTR"), 20)
     ]
 
     expect:
@@ -51,5 +51,9 @@ class StockMarketShould extends Specification {
 
   private static Money usd(float amount) {
     Money.parse("USD " + String.valueOf(amount))
+  }
+
+  private static Ticker ticker(String code) {
+    new Ticker(code)
   }
 }

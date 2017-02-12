@@ -1,7 +1,7 @@
 package com.michaelszymczak.blogsupport.coati.support
 
 import com.michaelszymczak.blogsupport.coati.ListedCompany
-
+import com.michaelszymczak.blogsupport.coati.Ticker
 import com.michaelszymczak.blogsupport.coati.support.parsing.ExtractedData
 import com.michaelszymczak.blogsupport.coati.support.parsing.SplittingPattern
 import org.joda.money.Money
@@ -23,7 +23,7 @@ class ListedCompanyFixtures {
 
   private List<ListedCompany> listedCompanies() {
     data.extracted().collect {
-      new ListedCompany(it[0] as String, Money.parse(it[1] as String))
+      new ListedCompany(new Ticker(it[0] as String), Money.parse(it[1] as String))
     }
   }
 }

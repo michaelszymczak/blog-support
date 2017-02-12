@@ -1,6 +1,7 @@
 package com.michaelszymczak.blogsupport.coati.support
 
 import com.michaelszymczak.blogsupport.coati.CompanyShares
+import com.michaelszymczak.blogsupport.coati.Ticker
 import spock.lang.Specification
 
 import static com.michaelszymczak.blogsupport.coati.support.CompanySharesFixtures.companySharesBasedOn
@@ -12,8 +13,8 @@ class CompanySharesFixturesTest extends Specification {
 
     where:
     input               | expectedCompanyShares
-    '10 shares of GOOG' | [CompanyShares.of("GOOG", 10)]
-    '15 shares of TWTR' | [CompanyShares.of("TWTR", 15)]
+    '10 shares of GOOG' | [CompanyShares.of(ticker("GOOG"), 10)]
+    '15 shares of TWTR' | [CompanyShares.of(ticker("TWTR"), 15)]
   }
 
   def "should parse multiple company shares"() {
@@ -21,8 +22,12 @@ class CompanySharesFixturesTest extends Specification {
     companySharesBasedOn(
             '10 shares of GOOG and 15 shares of TWTR'
     ) == [
-            CompanyShares.of("GOOG", 10),
-            CompanyShares.of("TWTR", 15)
+            CompanyShares.of(ticker("GOOG"), 10),
+            CompanyShares.of(ticker("TWTR"), 15)
     ]
+  }
+
+  private static Ticker ticker(String code) {
+    new Ticker(code)
   }
 }

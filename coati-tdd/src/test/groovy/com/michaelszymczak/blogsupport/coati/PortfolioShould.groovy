@@ -7,12 +7,12 @@ class PortfolioShould extends Specification {
 
   def "be comparable based on assets and stock market it invests on"() {
     given:
-    final stockMarketA = StockMarket.listing([new ListedCompany("FOO", usd(1))])
-    final stockMarketB = StockMarket.listing([new ListedCompany("BAR", usd(2))])
+    final stockMarketA = StockMarket.listing([new ListedCompany(ticker("FOO"), usd(1))])
+    final stockMarketB = StockMarket.listing([new ListedCompany(ticker("BAR"), usd(2))])
     final Money fundsA = usd(3)
     final Money fundsB = usd(4)
-    final List<CompanyShares> sharesA = [new CompanyShares("FOO", 1)]
-    final List<CompanyShares> sharesB = [new CompanyShares("FOO", 2)]
+    final List<CompanyShares> sharesA = [CompanyShares.of(ticker("FOO"), 1)]
+    final List<CompanyShares> sharesB = [CompanyShares.of(ticker("FOO"), 2)]
     final Portfolio portfolio = Portfolio.tradingOn(stockMarketA)
 
     expect:
@@ -29,33 +29,33 @@ class PortfolioShould extends Specification {
     final Portfolio portfolio = Portfolio.tradingOn(stockMarket).with(initialFunds, noShares())
 
     when:
-    def portfolioAfterBuying = portfolio.afterBuying([new CompanyShares(ticker, howManyBought)])
+    def portfolioAfterBuying = portfolio.afterBuying([CompanyShares.of(ticker, howManyBought)])
 
     then:
     portfolio == Portfolio.tradingOn(stockMarket).with(initialFunds, noShares())
     portfolioAfterBuying == Portfolio.tradingOn(stockMarket)
-            .with(expectedFundsAfterThePurchase, [new CompanyShares(ticker, howManyBought)])
+            .with(expectedFundsAfterThePurchase, [CompanyShares.of(ticker, howManyBought)])
 
     where:
-    ticker | pricePerShare | howManyBought | initialFunds | expectedFundsAfterThePurchase
-    "FOO"  | usd(10)       | 1             | usd(60)      | usd(50)
-    "BAR"  | usd(1)        | 1             | usd(100)     | usd(99)
-    "BAZ"  | usd(3)        | 7             | usd(121)     | usd(100)
+    ticker        | pricePerShare | howManyBought | initialFunds | expectedFundsAfterThePurchase
+    ticker("FOO") | usd(10)       | 1             | usd(60)      | usd(50)
+    ticker("BAR") | usd(1)        | 1             | usd(100)     | usd(99)
+    ticker("BAZ") | usd(3)        | 7             | usd(121)     | usd(100)
   }
 
   def "deduct the cost of all bought shares"() {
     given:
     def stockMarket = StockMarket.listing([
-            new ListedCompany("FOO", usd(1)),
-            new ListedCompany("BAR", usd(2)),
-            new ListedCompany("BAZ", usd(3))
+            new ListedCompany(ticker("FOO"), usd(1)),
+            new ListedCompany(ticker("BAR"), usd(2)),
+            new ListedCompany(ticker("BAZ"), usd(3))
     ])
 
     def initialFunds = usd(100)
 
     def sharesToBuy = [
-            new CompanyShares("FOO", 7),
-            new CompanyShares("BAZ", 3),
+            CompanyShares.of(ticker("FOO"), 7),
+            CompanyShares.of(ticker("BAZ"), 3),
     ]
 
     when:
@@ -76,5 +76,9 @@ class PortfolioShould extends Specification {
 
   private static List<CompanyShares> noShares() {
     []
+  }
+
+  private static Ticker ticker(String code) {
+    new Ticker(code)
   }
 }

@@ -11,7 +11,7 @@ import static com.google.common.collect.ImmutableMap.copyOf;
 
 public class StockMarket extends Value {
 
-  Map<String,ListedCompany> listedCompanies;
+  Map<Ticker,ListedCompany> listedCompanies;
 
   public StockMarket(List<ListedCompany> listedCompanies) {
     this.listedCompanies = copyOf(listedCompanies.stream().collect(Collectors.toMap(
@@ -24,7 +24,7 @@ public class StockMarket extends Value {
     return new StockMarket(listedCompanies);
   }
 
-  public Money priceOf(String companyWithTicker) {
+  public Money priceOf(Ticker companyWithTicker) {
     return listedCompanies.get(companyWithTicker).pricePerShare();
   }
 

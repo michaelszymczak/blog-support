@@ -1,6 +1,7 @@
 package com.michaelszymczak.blogsupport.coati.support
 
 import com.michaelszymczak.blogsupport.coati.CompanyShares
+import com.michaelszymczak.blogsupport.coati.Ticker
 import com.michaelszymczak.blogsupport.coati.support.parsing.ExtractedData
 import com.michaelszymczak.blogsupport.coati.support.parsing.SplittingPattern
 
@@ -21,7 +22,7 @@ class CompanySharesFixtures {
 
   List<CompanyShares> companyShares() {
     data.extracted().collect {
-      CompanyShares.of(it[1] as String, Integer.parseInt(it[0] as String))
+      CompanyShares.of(new Ticker(it[1] as String), Integer.parseInt(it[0] as String))
     }
   }
 }
