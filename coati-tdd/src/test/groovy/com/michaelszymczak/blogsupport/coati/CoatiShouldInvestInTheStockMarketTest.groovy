@@ -30,7 +30,7 @@ class CoatiShouldInvestInTheStockMarketTest extends Specification {
     companies                                                 | someInitialAmount | someShares                              | initialFundsAfterBuyingSomeShares
     'GOOG sold USD 813.67 per share'                          | 'USD 100000'      | '10 shares of GOOG'                     | 'USD 91863.30'
     'TWTR sold USD 1 per share'                               | 'USD 10'          | '5 shares of TWTR'                      | 'USD 5'
-//    'GOOG sold USD 3 per share and TWTR sold USD 4 per share' | 'USD 100'         | '2 shares of TWTR and 3 shares of GOOG' | 'USD 83' // TODO
+    'GOOG sold USD 3 per share and TWTR sold USD 4 per share' | 'USD 100'         | '2 shares of TWTR and 3 shares of GOOG' | 'USD 83'
   }
 
   private void 'stock market listing'(String infoAboutListedCompanies) {

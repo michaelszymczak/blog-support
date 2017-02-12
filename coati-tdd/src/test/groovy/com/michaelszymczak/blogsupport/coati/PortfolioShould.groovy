@@ -28,6 +28,32 @@ class PortfolioShould extends Specification {
     "BAZ"  | usd(3)        | 7             | usd(121)     | usd(100)
   }
 
+  def "deduct the cost of all bought shares"() {
+    given:
+    def stockMarket = StockMarket.listing([
+            new ListedCompany("FOO", usd(1)),
+            new ListedCompany("BAR", usd(2)),
+            new ListedCompany("BAZ", usd(3))
+    ])
+
+    def initialFunds = usd(100)
+
+    def sharesToBuy = [
+            new CompanyShares("FOO", 7),
+            new CompanyShares("BAZ", 3),
+    ]
+
+    when:
+    Portfolio portfolio = Portfolio
+            .tradingOn(stockMarket)
+            .with(initialFunds, noShares())
+            .afterBuying(sharesToBuy)
+
+    then:
+    portfolio.funds() == usd(84)
+    portfolio.shares() == sharesToBuy
+  }
+
   private static Money usd(def howMany) {
     Money.parse("USD $howMany")
   }

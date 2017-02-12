@@ -5,9 +5,11 @@ import org.joda.money.CurrencyUnit;
 import org.joda.money.Money;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 import static com.google.common.collect.ImmutableList.copyOf;
+import static org.joda.money.Money.total;
 
 public class Portfolio extends Value {
 
@@ -39,6 +41,11 @@ public class Portfolio extends Value {
   }
 
   public Portfolio afterBuying(List<CompanyShares> shares) {
-    return new Portfolio(stockMarket, funds.minus(stockMarket.priceOf(shares.get(0))), shares);
+
+    final Money totalPrice = total(shares.stream()
+            .map(stockMarket::priceOf)
+            .collect(Collectors.toList()));
+
+    return new Portfolio(stockMarket, funds.minus(totalPrice), shares);
   }
 }
