@@ -39,7 +39,6 @@ public class Portfolio extends Value {
   }
 
   public Portfolio afterBuying(List<CompanyShares> shares) {
-    // TODO
-    return this;
+    return new Portfolio(stockMarket, funds.minus(10), shares);
   }
 }
