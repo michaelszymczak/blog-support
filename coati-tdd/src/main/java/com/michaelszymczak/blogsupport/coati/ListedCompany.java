@@ -11,4 +11,12 @@ public class ListedCompany extends Value {
     this.ticker = ticker;
     this.pricePerShare = pricePerShare;
   }
+
+  public String ticker() {
+    return ticker;
+  }
+
+  public Money pricePerShare() {
+    return pricePerShare;
+  }
 }
