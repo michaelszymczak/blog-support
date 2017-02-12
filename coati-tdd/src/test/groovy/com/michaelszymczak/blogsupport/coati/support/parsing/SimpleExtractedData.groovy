@@ -12,7 +12,7 @@ class SimpleExtractedData implements ExtractedData {
     this.input = checkNotNull(input)
   }
 
-  List extracted() {
+  List<?> extracted() {
     def matcher = (input =~ pattern)
     assert matcher.matches()
 
