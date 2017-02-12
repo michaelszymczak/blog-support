@@ -17,4 +17,8 @@ public class CompanyShares extends Value {
   public String ticker() {
     return ticker;
   }
+
+  public int howMany() {
+    return howMany;
+  }
 }

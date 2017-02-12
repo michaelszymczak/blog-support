@@ -6,7 +6,7 @@ import org.joda.money.Money;
 
 import java.util.List;
 
-import static org.joda.money.Money.parse;
+import static com.michaelszymczak.blogsupport.coati.Portfolio.tradingOn;
 
 public class Coati {
 
@@ -20,8 +20,7 @@ public class Coati {
 
   private Coati(String name, StockMarket stockMarket, Money funds, List<CompanyShares> shares) {
     this.name = name;
-    // TODO: at some point remove hardcoded values
-    this.portfolio = Portfolio.tradingOn(stockMarket).with(parse("USD 92676.97"), ImmutableList.of(CompanyShares.of("GOOG", 10)));
+    this.portfolio = tradingOn(stockMarket).with(funds, shares);
   }
 
   public static void main(String[] args) {

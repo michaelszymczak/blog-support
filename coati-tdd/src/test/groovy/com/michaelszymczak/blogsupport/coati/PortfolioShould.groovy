@@ -12,19 +12,20 @@ class PortfolioShould extends Specification {
             .with(initialFunds, noShares())
 
     when:
-    def portfolioAfterBuying = portfolio.afterBuying([new CompanyShares(ticker, 1)])
+    def portfolioAfterBuying = portfolio.afterBuying([new CompanyShares(ticker, howManyBought)])
 
 
     then:
     portfolio.funds() == initialFunds
     portfolio.shares() == noShares()
     portfolioAfterBuying.funds() == expectedFundsAfterThePurchase
-    portfolioAfterBuying.shares() == [new CompanyShares(ticker, 1)]
+    portfolioAfterBuying.shares() == [new CompanyShares(ticker, howManyBought)]
 
     where:
-    ticker | pricePerShare | initialFunds | expectedFundsAfterThePurchase
-    "FOO"  | usd(10)       | usd(60)      | usd(50)
-    "BAR"  | usd(1)        | usd(100)     | usd(99)
+    ticker | pricePerShare | howManyBought | initialFunds | expectedFundsAfterThePurchase
+    "FOO"  | usd(10)       | 1             | usd(60)      | usd(50)
+    "BAR"  | usd(1)        | 1             | usd(100)     | usd(99)
+    "BAZ"  | usd(3)        | 7             | usd(121)     | usd(100)
   }
 
   private static Money usd(def howMany) {
