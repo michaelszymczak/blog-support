@@ -41,11 +41,10 @@ public class Portfolio extends Value {
   }
 
   public Portfolio afterBuying(List<CompanyShares> shares) {
-
-    final Money totalPrice = total(shares.stream()
-            .map(stockMarket::priceOf)
-            .collect(Collectors.toList()));
-
-    return new Portfolio(stockMarket, funds.minus(totalPrice), shares);
+    return new Portfolio(
+            stockMarket,
+            funds.minus(stockMarket.priceOf(shares)),
+            shares
+    );
   }
 }

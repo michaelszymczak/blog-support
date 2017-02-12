@@ -31,4 +31,8 @@ public class StockMarket extends Value {
   public Money priceOf(CompanyShares shares) {
     return priceOf(shares.ticker()).multipliedBy(shares.howMany());
   }
+
+  public Money priceOf(List<CompanyShares> companies) {
+    return Money.total(companies.stream().map(this::priceOf).collect(Collectors.toList()));
+  }
 }

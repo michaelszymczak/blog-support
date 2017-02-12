@@ -33,6 +33,22 @@ class StockMarketShould extends Specification {
     new CompanyShares("TWTR", 20) | usd(60)
   }
 
+
+  def "tell the total price of shares of many companies"() {
+    given:
+    def stockMarket = StockMarket.listing([
+            new ListedCompany("GOOG", usd(4)),
+            new ListedCompany("TWTR", usd(3)),
+    ])
+    def sharesToBuy = [
+            new CompanyShares("GOOG", 10),
+            new CompanyShares("TWTR", 20)
+    ]
+
+    expect:
+    stockMarket.priceOf(sharesToBuy) == usd(100)
+  }
+
   private static Money usd(float amount) {
     Money.parse("USD " + String.valueOf(amount))
   }
