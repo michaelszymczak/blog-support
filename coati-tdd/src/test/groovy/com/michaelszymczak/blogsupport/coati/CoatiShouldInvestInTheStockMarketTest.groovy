@@ -8,10 +8,15 @@ import static com.michaelszymczak.blogsupport.coati.support.ListedCompanyFixture
 
 class CoatiShouldInvestInTheStockMarketTest extends Specification {
 
+  private final String PLAYER = "foo"
+
   private Coati coati
   private StockMarket stockMarket
   private Money initialFunds
   private List<CompanyShares> initialShares
+
+  private Money expectedAvailableFunds
+  private List<CompanyShares>  expectedShares
 
   def "buy some shares having enough funds"() {
     given:
@@ -46,16 +51,19 @@ class CoatiShouldInvestInTheStockMarketTest extends Specification {
   }
 
   private void 'bought'(String infoAboutBoughtCompanyShares) {
-    coati = Coati.createForNewPlayer("foo", stockMarket, initialFunds, initialShares)
+    coati = Coati.createForNewPlayer(PLAYER, stockMarket, initialFunds, initialShares)
     coati.bought("foo", companySharesBasedOn(infoAboutBoughtCompanyShares))
   }
 
   private void 'available funds should be'(String expectedFunds) {
-    assert coati.funds() == Money.parse(expectedFunds)
+    expectedAvailableFunds = Money.parse(expectedFunds)
   }
 
-  private void 'should have'(String expectedShares) {
-    assert coati.shares() == companySharesBasedOn(expectedShares)
+  private void 'should have'(String shares) {
+    expectedShares = companySharesBasedOn(shares)
+
+    coati.portfolio(PLAYER) == Portfolio.tradingOn(stockMarket)
+            .with(expectedAvailableFunds, expectedShares)
   }
 
 }

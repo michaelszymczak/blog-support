@@ -5,11 +5,9 @@ import org.joda.money.CurrencyUnit;
 import org.joda.money.Money;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 import static com.google.common.collect.ImmutableList.copyOf;
-import static org.joda.money.Money.total;
 
 public class Portfolio extends Value {
 
@@ -30,14 +28,6 @@ public class Portfolio extends Value {
 
   public static Portfolio tradingOn(StockMarket stockMarket) {
     return new Portfolio(stockMarket, Money.zero(CurrencyUnit.USD), ImmutableList.<CompanyShares>of());
-  }
-
-  public Money funds() {
-    return funds;
-  }
-
-  public List<CompanyShares> shares() {
-    return shares;
   }
 
   public Portfolio afterBuying(List<CompanyShares> shares) {

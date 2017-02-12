@@ -5,21 +5,36 @@ import spock.lang.Specification
 
 class PortfolioShould extends Specification {
 
+  def "be comparable based on assets and stock market it invests on"() {
+    given:
+    final stockMarketA = StockMarket.listing([new ListedCompany("FOO", usd(1))])
+    final stockMarketB = StockMarket.listing([new ListedCompany("BAR", usd(2))])
+    final Money fundsA = usd(3)
+    final Money fundsB = usd(4)
+    final List<CompanyShares> sharesA = [new CompanyShares("FOO", 1)]
+    final List<CompanyShares> sharesB = [new CompanyShares("FOO", 2)]
+    final Portfolio portfolio = Portfolio.tradingOn(stockMarketA)
+
+    expect:
+    portfolio == Portfolio.tradingOn(stockMarketA)
+    portfolio != Portfolio.tradingOn(stockMarketB)
+    portfolio.with(fundsA, sharesA) == portfolio.with(fundsA, sharesA)
+    portfolio.with(fundsA, sharesA) != portfolio.with(fundsA, sharesB)
+    portfolio.with(fundsA, sharesA) != portfolio.with(fundsB, sharesA)
+  }
+
   def "deduct the price of the bought share from available funds"() {
     given:
-    Portfolio portfolio = Portfolio
-            .tradingOn(StockMarket.listing([new ListedCompany(ticker, pricePerShare)]))
-            .with(initialFunds, noShares())
+    final stockMarket = StockMarket.listing([new ListedCompany(ticker, pricePerShare)])
+    final Portfolio portfolio = Portfolio.tradingOn(stockMarket).with(initialFunds, noShares())
 
     when:
     def portfolioAfterBuying = portfolio.afterBuying([new CompanyShares(ticker, howManyBought)])
 
-
     then:
-    portfolio.funds() == initialFunds
-    portfolio.shares() == noShares()
-    portfolioAfterBuying.funds() == expectedFundsAfterThePurchase
-    portfolioAfterBuying.shares() == [new CompanyShares(ticker, howManyBought)]
+    portfolio == Portfolio.tradingOn(stockMarket).with(initialFunds, noShares())
+    portfolioAfterBuying == Portfolio.tradingOn(stockMarket)
+            .with(expectedFundsAfterThePurchase, [new CompanyShares(ticker, howManyBought)])
 
     where:
     ticker | pricePerShare | howManyBought | initialFunds | expectedFundsAfterThePurchase
@@ -50,8 +65,9 @@ class PortfolioShould extends Specification {
             .afterBuying(sharesToBuy)
 
     then:
-    portfolio.funds() == usd(84)
-    portfolio.shares() == sharesToBuy
+    portfolio == Portfolio
+            .tradingOn(stockMarket)
+            .with(usd(84), sharesToBuy)
   }
 
   private static Money usd(def howMany) {

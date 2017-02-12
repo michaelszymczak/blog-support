@@ -34,31 +34,19 @@ public class Coati {
     System.out.println("    .:::   .::      .:: .:::   .::()  ");
     System.out.println("                                      ");
 
-    Coati coati = new Coati(
+    new Coati(
             "some player",
             StockMarket.listing(ImmutableList.<ListedCompany>of()),
             Money.zero(CurrencyUnit.USD),
             ImmutableList.<CompanyShares>of());
-
-    System.out.println("Player: " + coati.name());
-    System.out.println("Funds:  " + coati.funds());
-    System.out.println("Shares: " + coati.shares());
-  }
-
-  public String name() {
-    return name;
-  }
-
-  public Money funds() {
-    return portfolio.funds();
-  }
-
-  public List<CompanyShares> shares()
-  {
-    return portfolio.shares();
   }
 
   public synchronized void bought(String player, List<CompanyShares> shares) {
     portfolio = portfolio.afterBuying(shares);
+  }
+
+  public Portfolio portfolio(String player)
+  {
+    return portfolio;
   }
 }
