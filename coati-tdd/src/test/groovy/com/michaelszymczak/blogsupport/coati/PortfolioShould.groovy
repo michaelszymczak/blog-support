@@ -1,7 +1,6 @@
 package com.michaelszymczak.blogsupport.coati
 
 import org.joda.money.Money
-import spock.lang.Ignore
 import spock.lang.Specification
 
 class PortfolioShould extends Specification {
@@ -86,7 +85,6 @@ class PortfolioShould extends Specification {
             .with(usd(95), [CompanyShares.of(ticker("BAR"), 7), CompanyShares.of(ticker("FOO"), 5)])
   }
 
-  @Ignore
   def "buy more shares of the same company"() {
     given:
     def stockMarket = StockMarket.listing([

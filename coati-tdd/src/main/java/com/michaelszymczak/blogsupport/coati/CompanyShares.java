@@ -5,14 +5,14 @@ import static com.google.common.base.Preconditions.checkNotNull;
 public class CompanyShares extends Value {
 
   private final Ticker ticker;
-  private final int howMany;
+  private final long howMany;
 
-  public CompanyShares(Ticker ticker, int howMany) {
+  public CompanyShares(Ticker ticker, long howMany) {
     this.ticker = checkNotNull(ticker);
     this.howMany = howMany;
   }
 
-  public static CompanyShares of(Ticker ticker, int howMany) {
+  public static CompanyShares of(Ticker ticker, long howMany) {
     return new CompanyShares(ticker, howMany);
   }
 
@@ -20,7 +20,7 @@ public class CompanyShares extends Value {
     return ticker;
   }
 
-  public int howMany() {
+  public long howMany() {
     return howMany;
   }
 }
