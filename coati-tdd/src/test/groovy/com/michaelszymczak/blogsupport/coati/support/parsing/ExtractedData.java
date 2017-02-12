@@ -5,12 +5,12 @@ import java.util.List;
 
 public interface ExtractedData {
 
-  static ExtractedData simpleData(String pattern, String input) {
+  static ExtractedData data(String pattern, String input) {
     return new SimpleExtractedData(pattern, input);
   }
 
-  static ExtractedData nestedData(String pattern, ExtractedData data) {
-    return new ComplexExtractedData(pattern, data);
+  static ExtractedData data(String outerPattern, String innerPattern, String input) {
+    return new ComplexExtractedData(outerPattern, innerPattern, input);
   }
 
   List<?> extracted();

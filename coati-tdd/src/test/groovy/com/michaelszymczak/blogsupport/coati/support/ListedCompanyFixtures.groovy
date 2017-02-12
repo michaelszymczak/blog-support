@@ -13,11 +13,11 @@ class ListedCompanyFixtures {
   }
 
   private ListedCompanyFixtures(String input) {
-    this.data = ExtractedData.simpleData("(.+) sold (.+) per share", input)
+    this.data = ExtractedData.data("(.+)", "(.+) sold (.+) per share", input)
   }
 
   List<ListedCompany> listedCompanies() {
-    List extracted = data.extracted()
+    List extracted = data.extracted()[0] as List
 
     String ticker = extracted[0]
     String price = extracted[1]

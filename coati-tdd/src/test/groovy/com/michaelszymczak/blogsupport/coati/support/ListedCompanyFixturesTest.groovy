@@ -7,7 +7,7 @@ import spock.lang.Specification
 class ListedCompanyFixturesTest extends Specification {
   def "should parse listed companies"() {
     expect:
-    new ListedCompanyFixtures(input).listedCompanies() == expectedListedCompanies
+    ListedCompanyFixtures.listedCompaniesBasedOn(input) == expectedListedCompanies
 
     where:
     input                            | expectedListedCompanies
