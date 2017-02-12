@@ -3,10 +3,12 @@ package com.michaelszymczak.blogsupport.coati.support
 import com.michaelszymczak.blogsupport.coati.CompanyShares
 import spock.lang.Specification
 
+import static com.michaelszymczak.blogsupport.coati.support.CompanySharesFixtures.companySharesBasedOn
+
 class CompanySharesFixturesTest extends Specification {
   def "should parse company shares"() {
     expect:
-    new CompanySharesFixtures(input).companyShares() == expectedCompanyShares
+    companySharesBasedOn(input) == expectedCompanyShares
 
     where:
     input               | expectedCompanyShares

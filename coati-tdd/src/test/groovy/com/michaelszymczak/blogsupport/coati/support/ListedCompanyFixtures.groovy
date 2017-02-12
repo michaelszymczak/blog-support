@@ -12,7 +12,7 @@ class ListedCompanyFixtures {
   }
 
   private ListedCompanyFixtures(String input) {
-    this.data = new ExtractedData("(.+) sold (.+) per share", input, 2)
+    this.data = new ExtractedData("(.+) sold (.+) per share", input)
   }
 
   List<ListedCompany> listedCompanies() {

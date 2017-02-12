@@ -10,7 +10,7 @@ class CompanySharesFixtures {
   }
 
   private CompanySharesFixtures(String input) {
-    this.data = new ExtractedData("(.+) shares of (.+)", input, 2)
+    this.data = new ExtractedData("(.+) shares of (.+)", input)
   }
 
   List<CompanyShares> companyShares() {
