@@ -13,6 +13,11 @@ class SimpleExtractedData implements ExtractedData {
   }
 
   List<?> extracted() {
+    if (input.trim().isEmpty())
+    {
+      return []
+    }
+
     def matcher = (input =~ pattern.pattern())
     assert matcher.matches()
 

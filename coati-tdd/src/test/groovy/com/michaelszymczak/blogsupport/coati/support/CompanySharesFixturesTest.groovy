@@ -27,6 +27,11 @@ class CompanySharesFixturesTest extends Specification {
     ]
   }
 
+  def "should allow no shares"() {
+    expect:
+    companySharesBasedOn('').isEmpty()
+  }
+
   private static Ticker ticker(String code) {
     new Ticker(code)
   }
