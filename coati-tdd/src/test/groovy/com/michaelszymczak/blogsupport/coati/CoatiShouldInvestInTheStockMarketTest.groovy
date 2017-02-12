@@ -45,8 +45,8 @@ class CoatiShouldInvestInTheStockMarketTest extends Specification {
   }
 
   private void 'bought'(String infoAboutBoughtCompanyShares) {
-    coati = new Coati(stockMarket, initialFunds, initialShares)
-    coati = coati.bought(companySharesBasedOn(infoAboutBoughtCompanyShares))
+    coati = Coati.createForNewPlayer("foo", stockMarket, initialFunds, initialShares)
+    coati.bought("foo", companySharesBasedOn(infoAboutBoughtCompanyShares))
   }
 
   private void 'available funds should be'(String expectedFunds) {
@@ -54,7 +54,7 @@ class CoatiShouldInvestInTheStockMarketTest extends Specification {
   }
 
   private void 'should have'(String expectedShares) {
-    assert coati.portfolio() == Portfolio.with(companySharesBasedOn(expectedShares))
+    assert coati.shares() == companySharesBasedOn(expectedShares)
   }
 
 }

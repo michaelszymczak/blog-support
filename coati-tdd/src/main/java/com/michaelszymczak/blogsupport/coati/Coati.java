@@ -6,9 +6,22 @@ import org.joda.money.Money;
 
 import java.util.List;
 
+import static org.joda.money.Money.parse;
+
 public class Coati {
 
-  public Coati(StockMarket stockMarket, Money funds, List<CompanyShares> shares) {
+  private final String name;
+  private Portfolio portfolio;
+
+  public static Coati createForNewPlayer(String name, StockMarket stockMarket, Money initialFunds, List<CompanyShares> initialShares)
+  {
+    return new Coati(name, stockMarket, initialFunds, initialShares);
+  }
+
+  private Coati(String name, StockMarket stockMarket, Money funds, List<CompanyShares> shares) {
+    this.name = name;
+    // TODO: at some point remove hardcoded values
+    this.portfolio = Portfolio.with(parse("USD 91863.30"), ImmutableList.of(CompanyShares.of("GOOG", 10)));
   }
 
   public static void main(String[] args) {
@@ -21,23 +34,32 @@ public class Coati {
     System.out.println("  .::    .::  .:: .::   .::   .::     ");
     System.out.println("    .:::   .::      .:: .:::   .::()  ");
     System.out.println("                                      ");
-    new Coati(
+
+    Coati coati = new Coati(
+            "some player",
             new StockMarket(ImmutableList.<ListedCompany>of()),
             Money.zero(CurrencyUnit.USD),
             ImmutableList.<CompanyShares>of());
+
+    System.out.println("Player: " + coati.name());
+    System.out.println("Funds:  " + coati.funds());
+    System.out.println("Shares: " + coati.shares());
   }
 
-  public Portfolio portfolio() {
-    // TODO
-    return new Portfolio(ImmutableList.of(CompanyShares.of("GOOG", 10)));
+  public String name() {
+    return name;
   }
 
   public Money funds() {
-    // TODO
-    return Money.parse("USD 91863.30");
+    return portfolio.funds();
   }
 
-  public Coati bought(List<CompanyShares> shares) {
-    return this;
+  public List<CompanyShares> shares()
+  {
+    return portfolio.shares();
+  }
+
+  public synchronized void bought(String player, List<CompanyShares> shares) {
+    portfolio = portfolio.afterBuying(shares);
   }
 }
