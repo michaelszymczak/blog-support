@@ -21,7 +21,7 @@ public class Coati {
   private Coati(String name, StockMarket stockMarket, Money funds, List<CompanyShares> shares) {
     this.name = name;
     // TODO: at some point remove hardcoded values
-    this.portfolio = Portfolio.with(parse("USD 91863.30"), ImmutableList.of(CompanyShares.of("GOOG", 10)));
+    this.portfolio = Portfolio.tradingOn(stockMarket).with(parse("USD 91863.30"), ImmutableList.of(CompanyShares.of("GOOG", 10)));
   }
 
   public static void main(String[] args) {
@@ -37,7 +37,7 @@ public class Coati {
 
     Coati coati = new Coati(
             "some player",
-            new StockMarket(ImmutableList.<ListedCompany>of()),
+            StockMarket.listing(ImmutableList.<ListedCompany>of()),
             Money.zero(CurrencyUnit.USD),
             ImmutableList.<CompanyShares>of());
 

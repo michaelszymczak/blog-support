@@ -33,7 +33,7 @@ class CoatiShouldInvestInTheStockMarketTest extends Specification {
   }
 
   private void 'stock market listing'(String infoAboutListedCompanies) {
-    stockMarket = new StockMarket(listedCompaniesBasedOn(infoAboutListedCompanies))
+    stockMarket = StockMarket.listing(listedCompaniesBasedOn(infoAboutListedCompanies))
   }
 
   private void 'available funds of'(String funds) {
