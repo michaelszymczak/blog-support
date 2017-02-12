@@ -27,4 +27,8 @@ public class StockMarket extends Value {
   public Money priceOf(String companyWithTicker) {
     return listedCompanies.get(companyWithTicker).pricePerShare();
   }
+
+  public Money priceOf(CompanyShares shares) {
+    return priceOf(shares.ticker()).multipliedBy(shares.howMany());
+  }
 }

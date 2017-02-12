@@ -13,7 +13,27 @@ class StockMarketShould extends Specification {
 
     where:
     company | pricePerShare
-    "GOOG"  | Money.parse("USD 100")
-    "FOO"   | Money.parse("USD 5")
+    "GOOG"  | usd(100)
+    "FOO"   | usd(5)
+  }
+
+  def "tell the price of company shares"() {
+    given:
+    def stockMarket = StockMarket.listing([
+            new ListedCompany("GOOG", usd(4)),
+            new ListedCompany("TWTR", usd(3)),
+    ])
+
+    expect:
+    stockMarket.priceOf(shares) == expectedPrice
+
+    where:
+    shares                        | expectedPrice
+    new CompanyShares("GOOG", 10) | usd(40)
+    new CompanyShares("TWTR", 20) | usd(60)
+  }
+
+  private static Money usd(float amount) {
+    Money.parse("USD " + String.valueOf(amount))
   }
 }
