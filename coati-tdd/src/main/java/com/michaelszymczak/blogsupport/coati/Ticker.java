@@ -8,8 +8,4 @@ public class Ticker extends Value {
   public Ticker(String code) {
     this.code = checkNotNull(code);
   }
-
-  public String code() {
-    return code;
-  }
 }

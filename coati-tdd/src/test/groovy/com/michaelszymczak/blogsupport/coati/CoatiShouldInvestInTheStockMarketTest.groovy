@@ -16,7 +16,7 @@ class CoatiShouldInvestInTheStockMarketTest extends Specification {
   private List<CompanyShares> initialShares
 
   private Money expectedAvailableFunds
-  private List<CompanyShares>  expectedShares
+  private List<CompanyShares> expectedShares
 
   def "buy some shares having enough funds"() {
     given:
