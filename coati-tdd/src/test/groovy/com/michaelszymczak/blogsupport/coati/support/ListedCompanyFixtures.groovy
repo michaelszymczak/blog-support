@@ -18,8 +18,8 @@ class ListedCompanyFixtures {
   List<ListedCompany> listedCompanies() {
     List extracted = data.extracted()
 
-    String ticker = extracted[1]
-    String price = extracted[2]
+    String ticker = extracted[0]
+    String price = extracted[1]
 
     [new ListedCompany(ticker, Money.parse(price))]
   }

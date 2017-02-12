@@ -15,8 +15,8 @@ class CompanySharesFixtures {
 
   List<CompanyShares> companyShares() {
     List extracted = data.extracted()
-    int howMany = Integer.parseInt(extracted[1] as String)
-    String ticker = extracted[2]
+    int howMany = Integer.parseInt(extracted[0] as String)
+    String ticker = extracted[1]
 
     [CompanyShares.of(ticker, howMany)]
   }

@@ -14,6 +14,6 @@ class ExtractedData {
     def matcher = (input =~ pattern)
     assert matcher.matches()
 
-    (0..matcher.groupCount()).collect { int position -> matcher.group(position) }
+    (1..matcher.groupCount()).collect { int position -> matcher.group(position) }
   }
 }
