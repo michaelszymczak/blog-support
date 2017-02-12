@@ -2,8 +2,11 @@ package com.michaelszymczak.blogsupport.coati.support
 
 import com.michaelszymczak.blogsupport.coati.CompanyShares
 import com.michaelszymczak.blogsupport.coati.support.parsing.ExtractedData
+import com.michaelszymczak.blogsupport.coati.support.parsing.SplittingPattern
 
 class CompanySharesFixtures {
+
+  private static final SplittingPattern PATTERN = { "(.+) shares of (.+)" }
   private final ExtractedData data
 
   static List<CompanyShares> companySharesBasedOn(String infoAboutCompanyShares) {
@@ -11,7 +14,7 @@ class CompanySharesFixtures {
   }
 
   private CompanySharesFixtures(String input) {
-    this.data = ExtractedData.data("(.+) shares of (.+)", input)
+    this.data = ExtractedData.data( PATTERN , input)
   }
 
   List<CompanyShares> companyShares() {
