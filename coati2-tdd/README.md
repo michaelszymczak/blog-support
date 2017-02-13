@@ -1,6 +1,6 @@
 #  Coati - your stock broker.
 
-[![Build Status](https://travis-ci.org/michaelszymczak/blog-support.svg?branch=coati-tdd)](https://travis-ci.org/michaelszymczak/blog-support)
+[![Build Status](https://travis-ci.org/michaelszymczak/blog-support.svg?branch=coati2-tdd)](https://travis-ci.org/michaelszymczak/blog-support)
 
 ```
                               .::     
