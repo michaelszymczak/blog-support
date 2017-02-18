@@ -1,5 +1,6 @@
 package com.michaelszymczak.blogsupport.coati
 
+import org.joda.money.Money
 import spock.lang.Specification
 
 class CoatiInvestsInTheStockMarketTest extends Specification {
@@ -29,16 +30,20 @@ class CoatiInvestsInTheStockMarketTest extends Specification {
   private static void 'bought 10 shares of GOOG'() {
     // TODO
   }
-  private static void 'available funds should be USD 91863.30'() {
-    // TODO
+  private void 'available funds should be USD 91863.30'() {
+    expectedFundsAfterPurchase = Money.parse('USD 91863.30')
   }
 
   private void 'should have 10 shares of GOOG'() {
-    assert coati.portfolioOf(user) == Portfolio.with(Assets.with([
+    expectedAssetsAfterPurchase = Assets.with([
             CompanyShares.of(new Ticker("GOOG"), 10)
-    ]))
+    ])
+
+    assert coati.portfolioOf(user) == Portfolio.with(expectedAssetsAfterPurchase, expectedFundsAfterPurchase)
   }
 
   private coati = new Coati()
   private user = new User()
+  private Assets expectedAssetsAfterPurchase
+  private Money expectedFundsAfterPurchase
 }
