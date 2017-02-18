@@ -18,32 +18,52 @@ class CoatiInvestsInTheStockMarketTest extends Specification {
     'should have 10 shares of GOOG'()
   }
 
-  private static void 'stock market listing GOOG sold USD 813.67 per share'() {
-    // TODO
+  private void 'stock market listing GOOG sold USD 813.67 per share'() {
+    stockMarket = StockMarket.listing([
+            ListedCompany.withPricePerShare(new Ticker("GOOG"), usd("813.67"))
+    ])
   }
-  private static void 'available funds of USD 100000'() {
-    // TODO
+
+  private void 'available funds of USD 100000'() {
+    availableFundsBeforeTransaction = usd("100000")
   }
-  private static void 'no shares before transaction'() {
-    // TODO
+
+  private void 'no shares before transaction'() {
+    assetsBeforeTransaction = noAssets()
   }
-  private static void 'bought 10 shares of GOOG'() {
-    // TODO
+
+  private void 'bought 10 shares of GOOG'() {
+    coati.addPortfolioFor(user, Portfolio.with(assetsBeforeTransaction, availableFundsBeforeTransaction))
+    coati.buyFor(user, CompanyShares.of(new Ticker("GOOG"), 10))
   }
+
   private void 'available funds should be USD 91863.30'() {
-    expectedFundsAfterPurchase = Money.parse('USD 91863.30')
+    expectedFundsAfterTransaction = usd("91863.30")
   }
 
   private void 'should have 10 shares of GOOG'() {
-    expectedAssetsAfterPurchase = Assets.with([
+    expectedAssetsAfterTransaction = Assets.with([
             CompanyShares.of(new Ticker("GOOG"), 10)
     ])
 
-    assert coati.portfolioOf(user) == Portfolio.with(expectedAssetsAfterPurchase, expectedFundsAfterPurchase)
+    assert coati.portfolioOf(user) == Portfolio.with(expectedAssetsAfterTransaction, expectedFundsAfterTransaction)
   }
 
-  private coati = new Coati()
-  private user = new User()
-  private Assets expectedAssetsAfterPurchase
-  private Money expectedFundsAfterPurchase
+  private User user = new User()
+
+  private Coati coati = new Coati()
+  private StockMarket stockMarket
+  private Money availableFundsBeforeTransaction
+  private Assets assetsBeforeTransaction
+  private Assets expectedAssetsAfterTransaction
+  private Money expectedFundsAfterTransaction
+
+  private static Money usd(String amount)
+  {
+    Money.parse("USD $amount")
+  }
+
+  private static Assets noAssets() {
+    Assets.with([])
+  }
 }
