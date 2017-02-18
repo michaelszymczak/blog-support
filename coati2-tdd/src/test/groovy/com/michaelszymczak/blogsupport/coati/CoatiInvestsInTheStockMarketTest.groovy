@@ -32,7 +32,15 @@ class CoatiInvestsInTheStockMarketTest extends Specification {
   private static void 'available funds should be USD 91863.30'() {
     // TODO
   }
-  private static void 'should have 10 shares of GOOG'() {
-    // TODO
+
+  private void 'should have 10 shares of GOOG'() {
+    assert coati.portfolioOf(user) == Portfolio.with([
+            CompanyShares.of(new Ticker("GOOG"), 10)
+    ])
   }
+
+  private coati = new Coati()
+  private user = new User()
+
+
 }
