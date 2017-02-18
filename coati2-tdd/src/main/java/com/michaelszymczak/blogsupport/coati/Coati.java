@@ -17,6 +17,6 @@ public class Coati {
   }
 
   public Portfolio portfolioOf(User user) {
-    return new Portfolio(ImmutableList.of(CompanyShares.of(new Ticker("GOOG"), 10)));
+    return Portfolio.with(ImmutableList.of(CompanyShares.of(new Ticker("GOOG"), 10)));
   }
 }

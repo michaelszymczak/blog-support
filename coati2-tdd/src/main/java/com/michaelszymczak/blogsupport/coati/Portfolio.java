@@ -1,6 +1,5 @@
 package com.michaelszymczak.blogsupport.coati;
 
-import com.google.common.collect.ImmutableList;
 import com.michaelszymczak.blogsupport.coati.support.Value;
 
 import java.util.List;
@@ -9,13 +8,18 @@ import static com.google.common.base.Preconditions.checkNotNull;
 
 public class Portfolio extends Value {
 
-  private final List<CompanyShares> shares;
+  private final Assets assets;
 
+  @Deprecated
   public static Portfolio with(List<CompanyShares> shares) {
-    return new Portfolio(shares);
+    return Portfolio.with(Assets.with(shares));
   }
 
-  public Portfolio(List<CompanyShares> shares) {
-    this.shares = ImmutableList.copyOf(checkNotNull(shares));
+  public static Portfolio with(Assets assets) {
+    return new Portfolio(assets);
+  }
+
+  public Portfolio(Assets assets) {
+    this.assets = checkNotNull(assets);
   }
 }
