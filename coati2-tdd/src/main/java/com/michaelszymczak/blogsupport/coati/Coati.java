@@ -1,6 +1,6 @@
 package com.michaelszymczak.blogsupport.coati;
 
-import com.google.common.collect.ImmutableList;
+import static com.google.common.collect.ImmutableList.of;
 
 public class Coati {
 
@@ -17,6 +17,6 @@ public class Coati {
   }
 
   public Portfolio portfolioOf(User user) {
-    return Portfolio.with(ImmutableList.of(CompanyShares.of(new Ticker("GOOG"), 10)));
+    return Portfolio.with(Assets.with(of(CompanyShares.of(new Ticker("GOOG"), 10))));
   }
 }

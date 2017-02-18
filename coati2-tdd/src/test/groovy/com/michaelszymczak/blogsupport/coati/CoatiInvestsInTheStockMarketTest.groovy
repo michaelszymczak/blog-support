@@ -34,13 +34,11 @@ class CoatiInvestsInTheStockMarketTest extends Specification {
   }
 
   private void 'should have 10 shares of GOOG'() {
-    assert coati.portfolioOf(user) == Portfolio.with([
+    assert coati.portfolioOf(user) == Portfolio.with(Assets.with([
             CompanyShares.of(new Ticker("GOOG"), 10)
-    ])
+    ]))
   }
 
   private coati = new Coati()
   private user = new User()
-
-
 }
