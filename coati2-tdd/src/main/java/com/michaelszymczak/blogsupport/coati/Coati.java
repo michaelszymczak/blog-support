@@ -22,7 +22,7 @@ public class Coati {
     return Portfolio.with(Assets.with(of(CompanyShares.of(new Ticker("GOOG"), 10))), Money.parse("USD 91863.30"));
   }
 
-  public synchronized void buyFor(User user, CompanyShares sharesToBuy) {
+  public synchronized void buyFor(User user, Assets newAssets) {
 
   }
 
