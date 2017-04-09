@@ -1,9 +1,7 @@
 package com.michaelszymczak.diamond;
 
-import com.google.common.collect.ImmutableSet;
-
-import static com.michaelszymczak.diamond.Coordinates.ofYX;
-import static com.michaelszymczak.diamond.Letter.*;
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class Diamond {
 
@@ -18,27 +16,14 @@ public class Diamond {
   }
 
   public String rendered() {
-    if (letter == A)
-    {
-      return new Board(Layout.forLastLetterBeing(A).positioned(A)).toString();
-    }
-    if (letter == B)
-    {
-      Layout layout = Layout.forLastLetterBeing(B);
-      return new Board(new ImmutableSet.Builder<PositionedLetter>()
-              .addAll(layout.positioned(A))
-              .addAll(layout.positioned(B))
-              .build()
-      ).toString();
-    }
+    return new Board(allPositionedLetters()).toString();
+  }
 
-    Layout layout = Layout.forLastLetterBeing(C);
-    return new Board(new ImmutableSet.Builder<PositionedLetter>()
-            .addAll(layout.positioned(A))
-            .addAll(layout.positioned(B))
-            .addAll(layout.positioned(C))
-            .build()
-    ).toString();
+  private List<PositionedLetter> allPositionedLetters() {
+    final Layout layout = Layout.forLastLetterBeing(letter);
 
+    return letter.inclusiveSequence().stream()
+            .flatMap(l -> layout.positioned(l).stream())
+            .collect(Collectors.toList());
   }
 }

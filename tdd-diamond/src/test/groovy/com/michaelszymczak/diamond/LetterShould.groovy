@@ -2,13 +2,22 @@ package com.michaelszymczak.diamond
 
 import spock.lang.Specification
 
+import static com.michaelszymczak.diamond.Letter.*
+
 class LetterShould extends Specification {
 
   def "have position in the alphabet as its ordinal number"() {
     expect:
-    Letter.A.ordinal() == 0
-    Letter.B.ordinal() == 1
-    Letter.C.ordinal() == 2
-    Letter.D.ordinal() == 3
+    A.ordinal() == 0
+    B.ordinal() == 1
+    C.ordinal() == 2
+    D.ordinal() == 3
+  }
+
+  def "return all letters up to the specified one"() {
+    expect:
+    A.inclusiveSequence() == [A]
+    B.inclusiveSequence() == [A,B]
+    D.inclusiveSequence() == [A,B,C,D]
   }
 }
