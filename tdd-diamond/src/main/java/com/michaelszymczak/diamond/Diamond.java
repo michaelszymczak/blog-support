@@ -2,17 +2,17 @@ package com.michaelszymczak.diamond;
 
 public class Diamond {
 
-  private char letter;
+  private Letter letter;
 
-  public static Diamond of(char letter) {
+  public static Diamond of(Letter letter) {
     return new Diamond(letter);
   }
 
-  private Diamond(char letter) {
+  private Diamond(Letter letter) {
     this.letter = letter;
   }
 
   public String rendered() {
-    return letter == 'A' ? "A" : " A \nB B\n A ";
+    return letter == Letter.A ? "A" : " A \nB B\n A ";
   }
 }
