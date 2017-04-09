@@ -1,5 +1,9 @@
 package com.michaelszymczak.diamond;
 
+import static com.michaelszymczak.diamond.Coordinates.ofYX;
+import static com.michaelszymczak.diamond.Letter.A;
+import static com.michaelszymczak.diamond.Letter.B;
+
 public class Diamond {
 
   private Letter letter;
@@ -13,6 +17,11 @@ public class Diamond {
   }
 
   public String rendered() {
-    return letter == Letter.A ? "A" : " A \nB B\n A ";
+    return letter == A ? new Board(new PositionedLetter(ofYX(0,0), A)).toString()
+            : new Board(
+            new PositionedLetter(ofYX(0,1), A),
+            new PositionedLetter(ofYX(1,0), B), new PositionedLetter(ofYX(1,2), B),
+            new PositionedLetter(ofYX(2,1), A)
+    ).toString();
   }
 }
