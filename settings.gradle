@@ -1,1 +1,4 @@
 include 'tdd'
+include 'coati-tdd'
+include 'coati2-tdd'
+include 'tdd-diamond'
