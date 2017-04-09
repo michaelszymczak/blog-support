@@ -9,11 +9,23 @@ class DiamondAcceptanceTest extends Specification {
     Diamond.of(Letter.A).rendered() == "A"
   }
 
-  def "creates diamond shape if more than one letter"() {
+  def "uses all letters up to the provided one"() {
     expect:
     Diamond.of(Letter.B).rendered() == "" +
             " A " + "\n" +
             "B B" + "\n" +
             " A "
   }
+
+  def "creates diamond-like shape"() {
+    expect:
+    Diamond.of(Letter.C).rendered() == "" +
+            "  A  " + "\n" +
+            " B B " + "\n" +
+            "C   C" + "\n" +
+            " B B " + "\n" +
+            "  A  "
+  }
+
+
 }
