@@ -1,6 +1,8 @@
-package com.michaelszymczak.diamond;
+package com.michaelszymczak.diamond.implementation;
 
-public class Coordinates extends ValueObject {
+import com.michaelszymczak.diamond.support.ValueObject;
+
+class Coordinates extends ValueObject {
 
   private final int y;
   private final int x;

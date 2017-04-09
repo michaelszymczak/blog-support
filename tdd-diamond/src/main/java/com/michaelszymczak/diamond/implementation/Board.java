@@ -1,19 +1,13 @@
-package com.michaelszymczak.diamond;
+package com.michaelszymczak.diamond.implementation;
 
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.stream.Collectors;
 
-import static java.util.Arrays.asList;
-
-public class Board {
+class Board {
 
   private final PositionedLetter[][] board;
   private final String emptyCell;
-
-  public Board(PositionedLetter... cells) {
-    this(" ", asList(cells));
-  }
 
   public Board(Collection<PositionedLetter> cells) {
     this(" ", cells);
@@ -23,7 +17,6 @@ public class Board {
     this.emptyCell = emptyCell;
     this.board = boardWith(cells);
   }
-
 
   private static PositionedLetter[][] boardWith(Collection<PositionedLetter> cells) {
     int maxCellPosition = cells.stream()

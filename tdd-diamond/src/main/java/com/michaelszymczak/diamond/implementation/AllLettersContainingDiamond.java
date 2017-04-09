@@ -1,20 +1,24 @@
-package com.michaelszymczak.diamond;
+package com.michaelszymczak.diamond.implementation;
+
+import com.michaelszymczak.diamond.api.Diamond;
+import com.michaelszymczak.diamond.api.Letter;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class Diamond {
+public class AllLettersContainingDiamond implements Diamond {
 
   private Letter letter;
 
-  public static Diamond of(Letter letter) {
-    return new Diamond(letter);
+  public static AllLettersContainingDiamond of(Letter letter) {
+    return new AllLettersContainingDiamond(letter);
   }
 
-  private Diamond(Letter letter) {
+  private AllLettersContainingDiamond(Letter letter) {
     this.letter = letter;
   }
 
+  @Override
   public String rendered() {
     return new Board(allPositionedLetters()).toString();
   }

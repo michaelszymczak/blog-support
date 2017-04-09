@@ -1,6 +1,9 @@
-package com.michaelszymczak.diamond;
+package com.michaelszymczak.diamond.implementation;
 
-public class PositionedLetter extends ValueObject {
+import com.michaelszymczak.diamond.api.Letter;
+import com.michaelszymczak.diamond.support.ValueObject;
+
+class PositionedLetter extends ValueObject {
   private final Coordinates coordinates;
   private final Letter letter;
 

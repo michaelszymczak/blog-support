@@ -1,4 +1,4 @@
-package com.michaelszymczak.diamond;
+package com.michaelszymczak.diamond.api;
 
 import java.util.List;
 import java.util.stream.Collectors;

@@ -1,17 +1,19 @@
 package com.michaelszymczak.diamond
 
+import com.michaelszymczak.diamond.api.Letter
+import com.michaelszymczak.diamond.app.DiamondFactory
 import spock.lang.Specification
 
 class DiamondAcceptanceTest extends Specification {
 
   def "contains one letter if it is the first letter"() {
     expect:
-    Diamond.of(Letter.A).rendered() == "A"
+    new DiamondFactory().createFor(Letter.A).rendered() == "A"
   }
 
   def "uses all letters up to the provided one"() {
     expect:
-    Diamond.of(Letter.B).rendered() == "" +
+    new DiamondFactory().createFor(Letter.B).rendered() == "" +
             " A " + "\n" +
             "B B" + "\n" +
             " A "
@@ -19,7 +21,7 @@ class DiamondAcceptanceTest extends Specification {
 
   def "creates diamond-like shape"() {
     expect:
-    Diamond.of(Letter.C).rendered() == "" +
+    new DiamondFactory().createFor(Letter.C).rendered() == "" +
             "  A  " + "\n" +
             " B B " + "\n" +
             "C   C" + "\n" +
@@ -29,7 +31,7 @@ class DiamondAcceptanceTest extends Specification {
 
   def "uses all letters if possible"() {
     expect:
-    Diamond.of(Letter.Z).rendered() == "" +
+    new DiamondFactory().createFor(Letter.Z).rendered() == "" +
             "                         A                         " + "\n" +
             "                        B B                        " + "\n" +
             "                       C   C                       " + "\n" +

@@ -1,13 +1,10 @@
-package com.michaelszymczak.diamond
+package com.michaelszymczak.diamond.implementation
 
 import spock.lang.Specification
 
-import static com.michaelszymczak.diamond.Coordinates.ofYX
-import static com.michaelszymczak.diamond.Layout.forLastLetterBeing
-import static com.michaelszymczak.diamond.Letter.A
-import static com.michaelszymczak.diamond.Letter.B
-import static com.michaelszymczak.diamond.Letter.C
-import static com.michaelszymczak.diamond.Letter.D
+import static com.michaelszymczak.diamond.api.Letter.*
+import static com.michaelszymczak.diamond.implementation.Coordinates.ofYX
+import static com.michaelszymczak.diamond.implementation.Layout.forLastLetterBeing
 
 class LayoutShould extends Specification {
 

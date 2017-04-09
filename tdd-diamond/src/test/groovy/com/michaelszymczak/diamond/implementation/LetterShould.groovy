@@ -1,8 +1,8 @@
-package com.michaelszymczak.diamond
+package com.michaelszymczak.diamond.implementation
 
 import spock.lang.Specification
 
-import static com.michaelszymczak.diamond.Letter.*
+import static com.michaelszymczak.diamond.api.Letter.*
 
 class LetterShould extends Specification {
 

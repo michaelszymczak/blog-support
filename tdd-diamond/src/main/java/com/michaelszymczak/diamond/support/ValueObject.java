@@ -1,4 +1,4 @@
-package com.michaelszymczak.diamond;
+package com.michaelszymczak.diamond.support;
 
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;

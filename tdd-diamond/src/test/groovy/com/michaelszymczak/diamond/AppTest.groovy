@@ -3,7 +3,7 @@ package com.michaelszymczak.diamond
 import spock.lang.Specification
 
 class AppTest extends Specification {
-    def "application has a greeting"() {
+    def "application prints diamond"() {
         setup:
         def app = new App()
 
@@ -11,6 +11,6 @@ class AppTest extends Specification {
         def result = app.greeting
 
         then:
-        result != null
+        result.contains("G")
     }
 }

@@ -1,13 +1,13 @@
-package com.michaelszymczak.diamond;
+package com.michaelszymczak.diamond.implementation;
 
 import com.google.common.collect.ImmutableSet;
+import com.michaelszymczak.diamond.api.Letter;
 
 import java.util.Set;
 
-import static com.michaelszymczak.diamond.Coordinates.ofYX;
-import static com.michaelszymczak.diamond.Letter.A;
+import static com.michaelszymczak.diamond.implementation.Coordinates.ofYX;
 
-public class Layout {
+class Layout {
 
   private final Letter lastLetter;
 
@@ -19,19 +19,19 @@ public class Layout {
     this.lastLetter = lastLetter;
   }
 
-  public int yOfTop(Letter letter) {
+  int yOfTop(Letter letter) {
     return letter.ordinal();
   }
 
-  public int yOfBottom(Letter letter) {
+  int yOfBottom(Letter letter) {
     return lastLetter.ordinal() + lastLetter.ordinal() - letter.ordinal();
   }
 
-  public int xOfLeft(Letter letter) {
+  int xOfLeft(Letter letter) {
     return lastLetter.ordinal() - letter.ordinal();
   }
 
-  public int xOfRight(Letter letter) {
+  int xOfRight(Letter letter) {
     return lastLetter.ordinal() + letter.ordinal();
   }
 
