@@ -1,5 +1,12 @@
 package com.michaelszymczak.diamond;
 
+import com.google.common.collect.ImmutableSet;
+
+import java.util.Set;
+
+import static com.michaelszymczak.diamond.Coordinates.ofYX;
+import static com.michaelszymczak.diamond.Letter.A;
+
 public class Layout {
 
   private final Letter lastLetter;
@@ -28,4 +35,12 @@ public class Layout {
     return lastLetter.ordinal() + letter.ordinal();
   }
 
+  public Set<PositionedLetter> positioned(Letter letter) {
+    return ImmutableSet.of(
+            new PositionedLetter(ofYX(yOfTop(letter),xOfLeft(letter)), letter),
+            new PositionedLetter(ofYX(yOfTop(letter),xOfRight(letter)), letter),
+            new PositionedLetter(ofYX(yOfBottom(letter),xOfLeft(letter)), letter),
+            new PositionedLetter(ofYX(yOfBottom(letter),xOfRight(letter)), letter)
+    );
+  }
 }

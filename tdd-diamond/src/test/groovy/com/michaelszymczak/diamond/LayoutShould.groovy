@@ -2,6 +2,7 @@ package com.michaelszymczak.diamond
 
 import spock.lang.Specification
 
+import static com.michaelszymczak.diamond.Coordinates.ofYX
 import static com.michaelszymczak.diamond.Layout.forLastLetterBeing
 import static com.michaelszymczak.diamond.Letter.A
 import static com.michaelszymczak.diamond.Letter.B
@@ -52,5 +53,22 @@ class LayoutShould extends Specification {
     layout.xOfRight(B) == 4
     layout.xOfRight(C) == 5
     layout.xOfRight(D) == 6
+  }
+
+  def "generate coordinates for each letter based on last letter"() {
+    expect:
+    forLastLetterBeing(A).positioned(A) == [new PositionedLetter(ofYX(0,0), A)] as Set
+    forLastLetterBeing(B).positioned(A) == [
+            new PositionedLetter(ofYX(0,1), A),
+            new PositionedLetter(ofYX(2,1), A)
+    ] as Set
+    forLastLetterBeing(B).positioned(B) == [
+            new PositionedLetter(ofYX(1,0), B),
+            new PositionedLetter(ofYX(1,2), B)
+    ] as Set
+    forLastLetterBeing(C).positioned(B) == [
+            new PositionedLetter(ofYX(1,1), B), new PositionedLetter(ofYX(1,3), B),
+            new PositionedLetter(ofYX(3,1), B), new PositionedLetter(ofYX(3,3), B),
+    ] as Set
   }
 }
