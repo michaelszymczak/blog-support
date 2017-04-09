@@ -19,25 +19,25 @@ public class Diamond {
     if (letter == A)
     {
       Layout layout = Layout.forLastLetterBeing(A);
-      return new Board(new PositionedLetter(ofYX(layout.yOfTop(A),0), A)).toString();
+      return new Board(new PositionedLetter(ofYX(layout.yOfTop(A),layout.xOfLeft(A)), A)).toString();
     }
     if (letter == B)
     {
       Layout layout = Layout.forLastLetterBeing(B);
       return new Board(
-              new PositionedLetter(ofYX(layout.yOfTop(A),1), A),
-              new PositionedLetter(ofYX(layout.yOfTop(B),0), B), new PositionedLetter(ofYX(layout.yOfTop(B),2), B),
+              new PositionedLetter(ofYX(layout.yOfTop(A),layout.xOfLeft(A)), A),
+              new PositionedLetter(ofYX(layout.yOfTop(B),layout.xOfLeft(B)), B), new PositionedLetter(ofYX(layout.yOfTop(B),2), B),
               new PositionedLetter(ofYX(layout.yOfBottom(A),1), A)
       ).toString();
     }
 
     Layout layout = Layout.forLastLetterBeing(C);
     return new Board(
-            new PositionedLetter(ofYX(layout.yOfTop(A),2), A),
-            new PositionedLetter(ofYX(layout.yOfTop(B),1), B), new PositionedLetter(ofYX(layout.yOfTop(B),3), B),
-            new PositionedLetter(ofYX(layout.yOfTop(C),0), C), new PositionedLetter(ofYX(layout.yOfTop(C),4), C),
-            new PositionedLetter(ofYX(layout.yOfBottom(B),1), B), new PositionedLetter(ofYX(layout.yOfBottom(B),3), B),
-            new PositionedLetter(ofYX(layout.yOfBottom(A),2), A)
+            new PositionedLetter(ofYX(layout.yOfTop(A),layout.xOfLeft(A)), A),
+            new PositionedLetter(ofYX(layout.yOfTop(B),layout.xOfLeft(B)), B), new PositionedLetter(ofYX(layout.yOfTop(B),3), B),
+            new PositionedLetter(ofYX(layout.yOfTop(C),layout.xOfLeft(C)), C), new PositionedLetter(ofYX(layout.yOfTop(C),4), C),
+            new PositionedLetter(ofYX(layout.yOfBottom(B),layout.xOfLeft(B)), B), new PositionedLetter(ofYX(layout.yOfBottom(B),3), B),
+            new PositionedLetter(ofYX(layout.yOfBottom(A),layout.xOfLeft(A)), A)
     ).toString();
 
   }
