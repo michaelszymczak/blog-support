@@ -12,11 +12,13 @@ class LayoutShould extends Specification {
 
   def "let the top letter to be in ordinal number distance from the top"() {
     given:
-    def layout = layout()
+    def layout = forLastLetterBeing(D)
 
     expect:
     layout.yOfTop(A) == 0
+    layout.yOfTop(B) == 1
     layout.yOfTop(C) == 2
+    layout.yOfTop(D) == 3
   }
 
   def "let the bottom letter to be in ordinal number distance from the bottom which is twice the ordinal number of the max letter"() {
@@ -41,7 +43,14 @@ class LayoutShould extends Specification {
     layout.xOfLeft(A) == 3
   }
 
-  private static Layout layout() {
-    forLastLetterBeing(C)
+  def "let the right letter to be closer if their ordinal number is higher"() {
+    given:
+    def layout = forLastLetterBeing(D)
+
+    expect:
+    layout.xOfRight(A) == 3
+    layout.xOfRight(B) == 4
+    layout.xOfRight(C) == 5
+    layout.xOfRight(D) == 6
   }
 }

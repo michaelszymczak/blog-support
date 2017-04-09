@@ -17,11 +17,15 @@ public class Layout {
   }
 
   public int yOfBottom(Letter letter) {
-    return lastLetter.ordinal() * 2 - letter.ordinal();
+    return lastLetter.ordinal() + lastLetter.ordinal() - letter.ordinal();
   }
 
   public int xOfLeft(Letter letter) {
     return lastLetter.ordinal() - letter.ordinal();
+  }
+
+  public int xOfRight(Letter letter) {
+    return lastLetter.ordinal() + letter.ordinal();
   }
 
 }
